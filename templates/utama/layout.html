@@ -26,6 +26,7 @@
     <script src="{% static 'utama/js/nav.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.js"></script>
+
     <script>
         var slider = new KeenSlider(
           "#slider-wrapper",
@@ -66,16 +67,22 @@
         let tabsWithContent = (function () {
         let tabs = document.querySelectorAll('.tabs li');
         let tabsContent = document.querySelectorAll('.tab-content');
+        
+        // create iframe
 
         let deactvateAllTabs = function () {
+          
           tabs.forEach(function (tab) {
             tab.classList.remove('is-active');
+            
           });
         };
 
         let hideTabsContent = function () {
+          
           tabsContent.forEach(function (tabContent) {
             tabContent.classList.remove('is-active');
+            
           });
         };
 
@@ -91,11 +98,15 @@
           tab.addEventListener('click', function () {
             deactvateAllTabs();
             hideTabsContent();
+            // reload all items with classname iframe
+            let iframe = document.querySelectorAll('.iframe');
+            iframe.forEach(function (item) {
+              item.src = item.src;
+            });
             tab.classList.add('is-active');
             activateTabsContent(tab);
           });
         })
-
         tabs[0].click();
       })();
       </script>

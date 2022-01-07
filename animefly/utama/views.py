@@ -22,9 +22,7 @@ def anime(request, id, nombre=None):
 
 def ver(request, id, nombre=None):
     episode = Episode.objects.get(id=id)
-    anime_episode = Anime_episode.objects.filter(episode_id=id)
-
-
+    anime_episode = Anime_episode.objects.filter(episode_id=id).order_by('server')
     return render(request, 'utama/ver.html', {'episode': episode, 'servers': anime_episode})
 
 
