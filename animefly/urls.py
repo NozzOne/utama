@@ -15,7 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .utama import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('anime/<int:id>/<str:nombre>', views.anime, name='anime'),
+    path('ver/<int:id>/<str:nombre>', views.ver, name='ver'),
+    path('media/render/<str:filename>', views.render_image, name='render'),
+    path('media/background/<str:filename>', views.background_image, name='background'),
+    path('media/cover/<str:filename>', views.cover_image, name='cover'),
+    path('media/episode/<str:filename>', views.episode_image, name='episode'),
+
+
+
 ]

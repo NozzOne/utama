@@ -1,0 +1,43 @@
+
+<div class="container is-fluid">
+    <div class="slider">
+        <div id="slider-wrapper" class="slider-wrapper" style="display: flex;">
+            {% for slider in populares %}
+            <div class="keen-slider__slide number-slide1">
+                <div class="slider-cover">
+                    <figure class="image is-3by1">
+                        <img class="shadow-effect-blur" src="{% url 'background' filename=slider.filename %}" style="object-fit: cover; object-position: top;" alt="">
+                    </figure>
+                </div>
+                <div class="slide-content columns is-2" style="align-items: center;">
+                    <!-- create vertical columns -->
+                    <div class="column is-one-third" style="z-index: 2;">
+                        <div class="slide-content-item">
+                            <a href="{% url 'anime' id=slider.id nombre=slider.anime.title %}">
+                                <div class="slide-content-item-title block">
+                                    <p class="title is-3 has-text-left" style="color: var(--main-text-color-hover); text-shadow: 1px 1px 1px #000;">
+                                        {{ slider.anime.title }}
+                                    </p>
+                                </div>
+                                <!-- Anime type  -->
+                                <div class="slide-content-item-type block">
+                                    <p class="subtitle is-6 has-text-left" style="color: var(--main-text-color-hover); text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">
+                                        <i class="fas fa-play"></i>
+                                        <span>{{ slider.anime.tipo }}</span>
+                                    </p>
+                                </div>
+                                <div class="slide-content-item-description block">
+                                    <p class="text is-5 has-text-left" style="color: var(--main-text-color); font-family: Montserrat;">
+                                        {{ slider.anime.description }}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</div>

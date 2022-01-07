@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utama</title>
+    <link rel="stylesheet" href="{% static 'lib/bulma/bulma.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/others/border-animations.css' %}">
+    <link rel="stylesheet" href="{% static 'utama/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.css">
+
+</head>
+<body >
+
+    {% include 'utama/partials/_navbar.html' %}
+    
+    {% block content %}
+    {% endblock %}
+
+    {% include 'utama/partials/_footer.html' %}
+
+    <script src="{% static 'utama/js/nav.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.js"></script>
+    <script>
+        var slider = new KeenSlider(
+          "#slider-wrapper",
+          {
+            loop: true,
+          },
+          [
+            (slider) => {
+              let timeout
+              let mouseOver = false
+              function clearNextTimeout() {
+                clearTimeout(timeout)
+              }
+              function nextTimeout() {
+                clearTimeout(timeout)
+                if (mouseOver) return
+                timeout = setTimeout(() => {
+                  slider.next()
+                }, 4000)
+              }
+              slider.on("created", () => {
+                slider.container.addEventListener("mouseover", () => {
+                  mouseOver = true
+                  clearNextTimeout()
+                })
+                slider.container.addEventListener("mouseout", () => {
+                  mouseOver = false
+                  nextTimeout()
+                })
+                nextTimeout()
+              })
+              slider.on("dragStarted", clearNextTimeout)
+              slider.on("animationEnded", nextTimeout)
+              slider.on("updated", nextTimeout)
+            },
+          ]
+        )
+        let tabsWithContent = (function () {
+        let tabs = document.querySelectorAll('.tabs li');
+        let tabsContent = document.querySelectorAll('.tab-content');
+
+        let deactvateAllTabs = function () {
+          tabs.forEach(function (tab) {
+            tab.classList.remove('is-active');
+          });
+        };
+
+        let hideTabsContent = function () {
+          tabsContent.forEach(function (tabContent) {
+            tabContent.classList.remove('is-active');
+          });
+        };
+
+        let activateTabsContent = function (tab) {
+          tabsContent[getIndex(tab)].classList.add('is-active');
+        };
+
+        let getIndex = function (el) {
+          return [...el.parentElement.children].indexOf(el);
+        };
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            deactvateAllTabs();
+            hideTabsContent();
+            tab.classList.add('is-active');
+            activateTabsContent(tab);
+          });
+        })
+
+        tabs[0].click();
+      })();
+      </script>
+    
+    
+</body>
+</html>

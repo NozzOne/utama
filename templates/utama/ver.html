@@ -1,0 +1,73 @@
+{% extends 'utama/layout.html' %}
+
+{% block content %}
+
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">
+              <!-- anime name -->
+                <div class="name-container block" style="display: inline-flex;width: 100%;flex-wrap: nowrap;justify-content: space-between; align-items: center;">
+                    <div class="name-container-names" style="display: flex; flex-direction: column;">
+                        <h1 class="subtitle is-4 has-text-left" style="font-style:normal; font-weight:800; padding: 3px; font-family: Montserrat; font-style: normal; color: var(--main-text-color-hover); margin-bottom: 0;">
+                            {{episode.title}} {{episode.episode}}
+                        </h1>
+                        <h2 class="subtitle is-6 has-text-left block" style="font-style:normal; font-weight:800; padding: 3px; font-family: Montserrat; font-style: normal; color: var(--main-text-color);">
+                            {{episode.titleEn}} {{episode.episode}}
+                        </h2>
+                    </div>
+                </div>
+                <div id="tabs-with-content">
+                    <div class="tabs">
+                      <ul>
+                        {% for server in servers %}
+                            <li>
+                                <a>{{ server.server}}</a>
+                            </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                    <div>
+                    {% for server in servers %}
+                        <section class="tab-content block videoWrapper" style="padding: 0; position: relative; padding-bottom: 56.25%;  padding-top: 25px; height: 0;">
+                            <iframe class="iframeWrapper" width="640"  src="{{ server.link }}" allowfullscreen webkitallowfullscreen scrolling="no" frameborder="0"></iframe>
+                        </section>
+                    {% endfor %}
+
+                    </div>
+                    <div style="display: inline-flex; align-items: center; justify-content: space-between; flex-direction: row; width: 100%;">
+                        <div style="display:flex;">
+                            <a href="#" class="ver-anime-btn" style="color: var(--main-bg-color);">
+                                <span class="icon">
+                                    <i class="fas fa-list-ul"></i>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="fansub-btn" style="display:flex;">
+                            <a href="{{episode.fsLink}}" class="button is-primary is-outlined">
+                                <span class="icon">
+                                    <i class="fas fa-external-link-square-alt"></i>
+                                </span>
+                                {% if episode.fsLink == '' %}
+                                    <span>No Fansub</span>
+                                {% else %}
+                                    <span>Fansub</span>
+                                {% endif %}
+                            </a>
+                        </div>
+
+                    </div>
+                  </div>
+            </div>
+            <div class="column is-2">
+               <p style="color: white;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum optio incidunt at dolore. Exercitationem voluptas repudiandae quis unde, amet numquam voluptatibus ipsam minima quisquam reiciendis magnam! Obcaecati et similique quod.</p>
+            </div>
+          </div>
+    </div>
+</section>
+
+
+
+    
+{% endblock %}

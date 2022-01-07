@@ -1,0 +1,78 @@
+{% extends 'utama/layout.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="columns" style="justify-content: center;">
+            <div class="column is-6" style="display:flex;z-index: 3;">
+                <div class="info-container has-text-left">
+                    <div class="episode-count block">
+                        {% if anime.tipo == 'Película' %}
+                            <span style="color: var(--main-primary-color); font-family: Montserrat;"> Pelicula </span>
+                        {% elif count == 1 %}
+                            <span style="color: var(--main-primary-color); font-family: Montserrat;"> {{ count }} Capitulo</span>
+                        {% else %}
+                            <span style="color: var(--main-primary-color); font-family: Montserrat;"> {{ count }} Capitulos</span>
+                        {% endif %}
+                    </div>
+                    <div class="title-container block">
+                        <h1 class="title" style="color: var(--main-text-color-hover); font-family: Montserrat; font-style: normal;">{{anime.title}}</h1>
+                    </div>
+                    <div class="genres-container block" style="display:flex; font-style:normal; font-weight:400; padding: 3px; font-family: Montserrat; font-style: normal; color: var(--main-text-color-hover); text-transform: uppercase; gap: 15px;">
+                        
+                        {% for genre in generos %}
+                            <span>
+                                <a href="#">
+                                    <span>{{ genre.genre }}</span>
+                                </a>
+                            </span>
+                        {% endfor %}
+                    </div>
+                    <div class="description-container block">
+                        <p class="description" style="color:var(--main-text-color-hover); font-family: Montserrat;">
+                            {{anime.description}}
+                        </p>
+                    </div>
+                    <div class="buttons-container">
+                       <!--  Ver-->
+                    </div>
+                </div>
+            </div>
+            <div class="column is-4" style="display: flex;flex-direction: column;">
+                <div class="image-cover">
+                    <figure class="image is-2by3">
+                        <img style="width: auto;" src="{% url 'render' filename=render %}" alt="">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <!-- lista de capitulo -->
+        <div class="columns is-multiline">
+            {% for capitulo in capitulos %}
+                <div class="column is-one-quarter">
+                    <a href="{% url 'ver' id=1 nombre=anime.title %}">
+                        <div class="ui-box topBottom-rightLeftCorner">
+                            <div class="ui-border-element a-container">
+                                <figure class="image is-5by3 zoom-out" >
+                                    <img class="dark-effect" src="{% url 'episode' filename=capitulo.filename%}" alt="Placeholder image">
+                                </figure>
+                                <div class="anime-info" style="width: 100%;">
+                                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{capitulo.episode.title}}</p>
+                                </div>
+                                <div class="anime-ep">
+                                    <span class="is-size-5">{{ capitulo.episode.episode}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        
+</section>
+
+{% endblock content %}
