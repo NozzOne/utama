@@ -1,0 +1,256 @@
+[2022-01-07 04:35:47 +0000] [10596] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/tmp/gunicorn-utama.sock']
+  backlog: 2048
+  workers: 5
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/nozz/animefly
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: None
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/nozz/animefly/logs/gunicorn.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: utama
+  default_proc_name: animefly.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f8751a3a790>
+  on_reload: <function OnReload.on_reload at 0x7f8751a3a8b0>
+  when_ready: <function WhenReady.when_ready at 0x7f8751a3a9d0>
+  pre_fork: <function Prefork.pre_fork at 0x7f8751a3aaf0>
+  post_fork: <function Postfork.post_fork at 0x7f8751a3ac10>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f8751a3ad30>
+  worker_int: <function WorkerInt.worker_int at 0x7f8751a3ae50>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f8751a3af70>
+  pre_exec: <function PreExec.pre_exec at 0x7f8751a4e0d0>
+  pre_request: <function PreRequest.pre_request at 0x7f8751a4e1f0>
+  post_request: <function PostRequest.post_request at 0x7f8751a4e280>
+  child_exit: <function ChildExit.child_exit at 0x7f8751a4e3a0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f8751a4e4c0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f8751a4e5e0>
+  on_exit: <function OnExit.on_exit at 0x7f8751a4e700>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2022-01-07 04:35:47 +0000] [10596] [INFO] Starting gunicorn 20.1.0
+[2022-01-07 04:35:47 +0000] [10596] [DEBUG] Arbiter booted
+[2022-01-07 04:35:47 +0000] [10596] [INFO] Listening at: unix:/tmp/gunicorn-utama.sock (10596)
+[2022-01-07 04:35:47 +0000] [10596] [INFO] Using worker: sync
+[2022-01-07 04:35:47 +0000] [10603] [INFO] Booting worker with pid: 10603
+[2022-01-07 04:35:47 +0000] [10604] [INFO] Booting worker with pid: 10604
+[2022-01-07 04:35:47 +0000] [10605] [INFO] Booting worker with pid: 10605
+[2022-01-07 04:35:47 +0000] [10606] [INFO] Booting worker with pid: 10606
+[2022-01-07 04:35:47 +0000] [10607] [INFO] Booting worker with pid: 10607
+[2022-01-07 04:35:47 +0000] [10596] [DEBUG] 5 workers
+[2022-01-07 04:35:52 +0000] [10596] [INFO] Handling signal: term
+[2022-01-07 04:35:52 +0000] [10603] [INFO] Worker exiting (pid: 10603)
+[2022-01-07 04:35:52 +0000] [10604] [INFO] Worker exiting (pid: 10604)
+[2022-01-07 04:35:52 +0000] [10605] [INFO] Worker exiting (pid: 10605)
+[2022-01-07 04:35:52 +0000] [10606] [INFO] Worker exiting (pid: 10606)
+[2022-01-07 04:35:52 +0000] [10607] [INFO] Worker exiting (pid: 10607)
+[2022-01-07 04:35:53 +0000] [10596] [INFO] Shutting down: Master
+[2022-01-07 04:35:55 +0000] [10740] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/tmp/gunicorn-utama.sock']
+  backlog: 2048
+  workers: 5
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/nozz/animefly
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: None
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/nozz/animefly/logs/gunicorn.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: utama
+  default_proc_name: animefly.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f2c1c6f2790>
+  on_reload: <function OnReload.on_reload at 0x7f2c1c6f28b0>
+  when_ready: <function WhenReady.when_ready at 0x7f2c1c6f29d0>
+  pre_fork: <function Prefork.pre_fork at 0x7f2c1c6f2af0>
+  post_fork: <function Postfork.post_fork at 0x7f2c1c6f2c10>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f2c1c6f2d30>
+  worker_int: <function WorkerInt.worker_int at 0x7f2c1c6f2e50>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f2c1c6f2f70>
+  pre_exec: <function PreExec.pre_exec at 0x7f2c1c7060d0>
+  pre_request: <function PreRequest.pre_request at 0x7f2c1c7061f0>
+  post_request: <function PostRequest.post_request at 0x7f2c1c706280>
+  child_exit: <function ChildExit.child_exit at 0x7f2c1c7063a0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f2c1c7064c0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f2c1c7065e0>
+  on_exit: <function OnExit.on_exit at 0x7f2c1c706700>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2022-01-07 04:35:55 +0000] [10740] [INFO] Starting gunicorn 20.1.0
+[2022-01-07 04:35:55 +0000] [10740] [DEBUG] Arbiter booted
+[2022-01-07 04:35:55 +0000] [10740] [INFO] Listening at: unix:/tmp/gunicorn-utama.sock (10740)
+[2022-01-07 04:35:55 +0000] [10740] [INFO] Using worker: sync
+[2022-01-07 04:35:55 +0000] [10746] [INFO] Booting worker with pid: 10746
+[2022-01-07 04:35:55 +0000] [10747] [INFO] Booting worker with pid: 10747
+[2022-01-07 04:35:56 +0000] [10748] [INFO] Booting worker with pid: 10748
+[2022-01-07 04:35:56 +0000] [10749] [INFO] Booting worker with pid: 10749
+[2022-01-07 04:35:56 +0000] [10750] [INFO] Booting worker with pid: 10750
+[2022-01-07 04:35:56 +0000] [10740] [DEBUG] 5 workers
+[2022-01-07 04:35:57 +0000] [10748] [DEBUG] GET /
+[2022-01-07 04:36:29 +0000] [10748] [DEBUG] GET /admin
+[2022-01-07 04:36:30 +0000] [10749] [DEBUG] GET /admin/
+[2022-01-07 04:36:30 +0000] [10748] [DEBUG] GET /admin/login/
+[2022-01-07 04:36:31 +0000] [10749] [DEBUG] GET /favicon.ico
+[2022-01-07 04:37:51 +0000] [10749] [DEBUG] GET /
+[2022-01-07 04:38:37 +0000] [10748] [DEBUG] GET /
+[2022-01-07 04:41:19 +0000] [10747] [DEBUG] GET /
+[2022-01-07 04:41:22 +0000] [10746] [DEBUG] GET /
+[2022-01-07 04:42:08 +0000] [10749] [DEBUG] GET /
+[2022-01-07 04:42:10 +0000] [10746] [DEBUG] GET /anime/1/Kimetsu%20no%20Yaiba%20Movie:%20Mugen%20Ressha-hen
+[2022-01-07 04:42:12 +0000] [10749] [DEBUG] GET /
+[2022-01-07 04:42:13 +0000] [10750] [DEBUG] GET /
+[2022-01-07 04:42:28 +0000] [10746] [DEBUG] GET /
+[2022-01-07 04:43:54 +0000] [10748] [DEBUG] GET /
+[2022-01-07 04:48:21 +0000] [10746] [DEBUG] GET /anime/1/Kimetsu%20no%20Yaiba%20Movie:%20Mugen%20Ressha-hen
+[2022-01-07 04:48:30 +0000] [10747] [DEBUG] GET /favicon.ico
+[2022-01-07 04:53:19 +0000] [10747] [DEBUG] GET /
+[2022-01-07 04:59:11 +0000] [10748] [DEBUG] GET /
+[2022-01-07 05:00:32 +0000] [10750] [DEBUG] GET /
+[2022-01-07 05:00:41 +0000] [10749] [DEBUG] GET /anime/1/Kimetsu%20no%20Yaiba%20Movie:%20Mugen%20Ressha-hen
+[2022-01-07 05:01:04 +0000] [10750] [DEBUG] GET /anime/1/Kimetsu%20no%20Yaiba%20Movie:%20Mugen%20Ressha-hen
+[2022-01-07 05:01:08 +0000] [10749] [DEBUG] GET /
+[2022-01-07 05:01:19 +0000] [10746] [DEBUG] GET /
+[2022-01-07 05:01:21 +0000] [10750] [DEBUG] GET /
+[2022-01-07 05:02:23 +0000] [10750] [DEBUG] GET /
+[2022-01-07 05:02:35 +0000] [10749] [DEBUG] GET /
+[2022-01-07 05:02:37 +0000] [10747] [DEBUG] GET /
+[2022-01-07 05:05:45 +0000] [10748] [DEBUG] GET /
+[2022-01-07 05:05:53 +0000] [10750] [DEBUG] GET /
+[2022-01-07 05:10:25 +0000] [10750] [DEBUG] GET /
+[2022-01-07 05:12:25 +0000] [10747] [DEBUG] GET /
+[2022-01-07 05:16:12 +0000] [10750] [DEBUG] GET /
+[2022-01-07 05:16:24 +0000] [10747] [DEBUG] GET /ver/1/Kimetsu%20no%20Yaiba%20Movie:%20Mugen%20Ressha-hen
+[2022-01-07 05:16:27 +0000] [10749] [DEBUG] GET /anime/1/Kimetsu%20no%20Yaiba%20Movie:%20Mugen%20Ressha-hen
+[2022-01-07 05:16:29 +0000] [10750] [DEBUG] GET /ver/1/Kimetsu%20no%20Yaiba%20Movie:%20Mugen%20Ressha-hen
+[2022-01-07 05:16:30 +0000] [10747] [DEBUG] GET /
+[2022-01-07 05:16:35 +0000] [10749] [DEBUG] GET /ver/1/Kimetsu%20no%20Yaiba%20Movie:%20Mugen%20Ressha-hen
+[2022-01-07 05:18:34 +0000] [10748] [DEBUG] GET /admin/
+[2022-01-07 05:18:34 +0000] [10746] [DEBUG] GET /admin/login/
+[2022-01-07 05:19:09 +0000] [10749] [DEBUG] POST /admin/login/
+[2022-01-07 05:19:10 +0000] [10746] [DEBUG] GET /admin/
+[2022-01-07 05:19:11 +0000] [10749] [DEBUG] GET /admin/login/
+[2022-01-07 05:19:22 +0000] [10746] [DEBUG] GET /admin/utama/episode/
+[2022-01-07 05:19:22 +0000] [10748] [DEBUG] GET /admin/jsi18n/
+[2022-01-07 05:19:26 +0000] [10746] [DEBUG] GET /admin/utama/episode/1/change/
+[2022-01-07 05:19:26 +0000] [10748] [DEBUG] GET /admin/jsi18n/
+[2022-01-07 05:19:49 +0000] [10747] [DEBUG] POST /admin/utama/episode/1/change/
+[2022-01-07 05:19:49 +0000] [10750] [DEBUG] GET /admin/utama/episode/
+[2022-01-07 05:19:49 +0000] [10747] [DEBUG] GET /admin/jsi18n/
+[2022-01-07 05:19:52 +0000] [10750] [DEBUG] GET /admin/
+[2022-01-07 05:19:54 +0000] [10747] [DEBUG] GET /
+[2022-01-07 05:20:13 +0000] [10748] [DEBUG] GET /
+[2022-01-07 05:20:14 +0000] [10749] [DEBUG] GET /media/background/5f5bdc3c-8549-45e2-a2cc-20f1eb93c98f
+[2022-01-07 05:20:14 +0000] [10747] [DEBUG] GET /media/episode/b5e9278b-7ee2-49d7-963d-36811c5d9ea8
+[2022-01-07 05:20:14 +0000] [10748] [DEBUG] GET /media/cover/8e2fc7b0-86ca-42e4-b9c7-3c16cf99d02f
+[2022-01-07 05:20:22 +0000] [10747] [DEBUG] GET /ver/1/Kimetsu%20no%20Yaiba%20Movie:%20Mugen%20Ressha-hen
