@@ -11,7 +11,7 @@ class UploadToPathAndRename(object):
         self.sub_path = path
 
     def __call__(self, instance, filename):
-        ext = filename.split('.')[-1]
+        ext = "webp"
         # get filename
         if instance.pk:
             filename = '{}.{}'.format(instance.pk, ext)
