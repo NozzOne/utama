@@ -1,7 +1,26 @@
 from django.db import models
 from uuid import uuid4
+from django.utils.deconstruct import deconstructible
+import os
 
 # Create your models here.
+@deconstructible
+class UploadToPathAndRename(object):
+
+    def __init__(self, path):
+        self.sub_path = path
+
+    def __call__(self, instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.pk:
+            filename = '{}.{}'.format(instance.pk, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(self.sub_path, filename)
+
 class Anime(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
@@ -24,33 +43,33 @@ class Genres(models.Model):
     def __str__(self):
         return self.name
 
-class Anime_genre(models.Model):
+class AnimeGenres(models.Model):
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
     genre = models.ForeignKey(Genres, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.anime.title + ' - ' + self.genre.name
 
-class Anime_cover(models.Model):
+class AnimeCover(models.Model):
     filename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
-    cover = models.ImageField(upload_to='media/cover', verbose_name=filename)
+    cover = models.ImageField(upload_to=UploadToPathAndRename('media/cover'))
 
     def __str__(self):
         return self.anime.title
 
-class Anime_background(models.Model):
+class AnimeBackground(models.Model):
     filename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
-    background = models.ImageField(upload_to='media/background', verbose_name=filename)
+    background = models.ImageField(upload_to=UploadToPathAndRename('media/background'))
 
     def __str__(self):
         return self.anime.title
 
-class Anime_render(models.Model):
+class AnimeRender(models.Model):
     filename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
-    render = models.ImageField(upload_to='media/render', verbose_name=filename)
+    render = models.ImageField(upload_to=UploadToPathAndRename('media/render'))
 
     def __str__(self):
         return self.anime.title
@@ -68,15 +87,15 @@ class Episode(models.Model):
     def __str__(self):
         return self.anime.title + ' - ' + str(self.episode) 
     
-class Episode_thumbnail(models.Model):
+class EpisodeThumbnail(models.Model):
     filename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
     episode = models.ForeignKey(Episode, on_delete=models.CASCADE)
-    thumbnail = models.ImageField(upload_to='media/thumbnail', verbose_name=filename)
+    thumbnail = models.ImageField(upload_to=UploadToPathAndRename('media/thumbnail'))
 
     def __str__(self):
         return self.episode.anime.title + ' - ' + str(self.episode.episode)
 
-class Anime_episode(models.Model):
+class AnimeEpisode(models.Model):
     id = models.AutoField(primary_key=True)
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
     episode = models.ForeignKey(Episode, on_delete=models.CASCADE)

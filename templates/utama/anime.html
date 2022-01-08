@@ -54,7 +54,7 @@
         <div class="columns is-multiline">
             {% for capitulo in capitulos %}
                 <div class="column is-one-quarter">
-                    <a href="{% url 'ver' id=1 nombre=anime.title %}">
+                    <a href="{% url 'ver' id=capitulo.id nombre=capitulo.episode.title %}">
                         <div class="ui-box topBottom-rightLeftCorner">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-5by3 zoom-out" >

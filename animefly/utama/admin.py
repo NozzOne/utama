@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import Anime, Episode_thumbnail, Genres, Anime_genre, Anime_cover, Anime_background, Anime_render, Episode, Anime_episode
+from .models import Anime, EpisodeThumbnail, Genres, AnimeGenres, AnimeCover, AnimeBackground, AnimeRender, Episode, AnimeEpisode
 
 # Register your models here.
 admin.site.register(Anime)
 admin.site.register(Genres)
-admin.site.register(Anime_genre)
-admin.site.register(Anime_cover)
-admin.site.register(Anime_background)
-admin.site.register(Anime_render)
+admin.site.register(AnimeGenres)
+admin.site.register(AnimeCover)
+admin.site.register(AnimeBackground)
+admin.site.register(AnimeRender)
 admin.site.register(Episode)
-admin.site.register(Anime_episode)
-admin.site.register(Episode_thumbnail)
+admin.site.register(AnimeEpisode)
+admin.site.register(EpisodeThumbnail)
