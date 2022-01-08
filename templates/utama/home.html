@@ -58,7 +58,7 @@
         <div class="columns is-multiline">
             {% for serie in series %}
                 <div class="column is-one-quarter">
-                    <a href="{% url 'anime' id=serie.id nombre=serie.anime.title%}">
+                    <a href="{% url 'anime' id=serie.anime.id nombre=serie.anime.title%}">
                         <div class="ui-box left-stay">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-2by3 zoom-out" >
