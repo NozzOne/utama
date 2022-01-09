@@ -31,7 +31,7 @@
                     <div>
                     {% for server in servers %}
                         <section  class="tab-content block videoWrapper" style="padding: 0; position: relative; padding-bottom: 56.25%;  padding-top: 25px; height: 0;">
-                            <iframe class="iframeWrapper iframe" width="640"  src="{{ server.link }}" allowfullscreen webkitallowfullscreen scrolling="no" frameborder="0"></iframe>
+                            <iframe class="iframeWrapper iframe" sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" width="640"  src="{{ server.link }}" allowfullscreen webkitallowfullscreen scrolling="no" frameborder="0"></iframe>
                         </section>
                     {% endfor %}
 
