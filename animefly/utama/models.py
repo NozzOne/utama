@@ -31,10 +31,18 @@ class Anime(models.Model):
     status = models.CharField(max_length=50)
     release = models.DateField()
     rating = models.CharField(max_length=50)
+    
+    coverFilename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
+    cover = models.ImageField(upload_to=UploadToPathAndRename('media/cover'))
+
+    backgroundFilename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
+    background = models.ImageField(upload_to=UploadToPathAndRename('media/background'))
+
+    renderFilename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
+    render = models.ImageField(upload_to=UploadToPathAndRename('media/render'))
 
     def __str__(self):
         return self.title      
-
 
 class Genres(models.Model):
     id = models.AutoField(primary_key=True)
@@ -50,30 +58,6 @@ class AnimeGenres(models.Model):
     def __str__(self):
         return self.anime.title + ' - ' + self.genre.name
 
-class AnimeCover(models.Model):
-    filename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
-    anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
-    cover = models.ImageField(upload_to=UploadToPathAndRename('media/cover'))
-
-    def __str__(self):
-        return self.anime.title
-
-class AnimeBackground(models.Model):
-    filename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
-    anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
-    background = models.ImageField(upload_to=UploadToPathAndRename('media/background'))
-
-    def __str__(self):
-        return self.anime.title
-
-class AnimeRender(models.Model):
-    filename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
-    anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
-    render = models.ImageField(upload_to=UploadToPathAndRename('media/render'))
-
-    def __str__(self):
-        return self.anime.title
-
 class Episode(models.Model):
     id = models.AutoField(primary_key=True)
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
@@ -82,19 +66,13 @@ class Episode(models.Model):
     titleEn = models.CharField(max_length=100)
     fansub = models.CharField(max_length=100, blank=True)
     fsLink = models.CharField(max_length=100, blank=True)
-
-
+    ThumbnailFilename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
+    Thumbnail = models.ImageField(upload_to=UploadToPathAndRename('media/thumbnail'))
+    
     def __str__(self):
         return self.anime.title + ' - ' + str(self.episode) 
+
     
-class EpisodeThumbnail(models.Model):
-    filename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
-    episode = models.ForeignKey(Episode, on_delete=models.CASCADE)
-    thumbnail = models.ImageField(upload_to=UploadToPathAndRename('media/thumbnail'))
-
-    def __str__(self):
-        return self.episode.anime.title + ' - ' + str(self.episode.episode)
-
 class AnimeEpisode(models.Model):
     id = models.AutoField(primary_key=True)
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)

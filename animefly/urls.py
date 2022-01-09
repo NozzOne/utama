@@ -28,7 +28,6 @@ urlpatterns = [
     path('anime/<int:id>/<str:nombre>', views.anime, name='anime'),
     path('ver/<int:id>/<str:nombre>', views.ver, name='ver'),
     path('directorio/', views.directorio, name="directorio"),
-    path('directorio/<str:genero>/', views.directorio_genero, name="directorio_genero"),
 
     path('media/render/<str:filename>', views.render_image, name='render'),
     path('media/background/<str:filename>', views.background_image, name='background'),

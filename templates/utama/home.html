@@ -19,17 +19,17 @@
         <div class="columns is-multiline is-mobile">
             {% for capitulo in caps %}
                 <div class="column is-3-desktop is-half-tablet is-4-mobile">
-                    <a href="{% url 'ver' id=capitulo.id nombre=capitulo.episode.title %}">
+                    <a href="{% url 'ver' id=capitulo.id nombre=capitulo.title %}">
                         <div class="ui-box topBottom-rightLeftCorner">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-5by3 zoom-out" >
-                                    <img class="dark-effect" src="{% url 'episode' filename=capitulo.filename %}" alt="Placeholder image">
+                                    <img class="dark-effect" src="{% url 'episode' filename=capitulo.ThumbnailFilename %}" alt="Placeholder image">
                                 </figure>
                                 <div class="anime-info" style="width: 100%;">
-                                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{ capitulo.episode.title }}</p>
+                                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{ capitulo.title }}</p>
                                 </div>
                                 <div class="anime-ep">
-                                    <span class="is-size-5">{{ capitulo.episode.episode }}</span>
+                                    <span class="is-size-5">{{ capitulo.episode }}</span>
                                 </div>
                             </div>
                         </div>
@@ -59,21 +59,20 @@
         <div class="columns is-multiline is-mobile">
             {% for serie in series %}
                 <div class="column is-3-desktop is-half-tablet is-4-mobile">
-                    <a href="{% url 'anime' id=serie.anime.id nombre=serie.anime.title%}">
+                    <a href="{% url 'anime' id=serie.id nombre=serie.title%}">
                         <div class="ui-box left-stay">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-2by3 zoom-out" >
-                                    <img class="dark-effect" src="{% url 'cover' filename=serie.filename %}" alt="Placeholder image">
+                                    <img class="dark-effect" src="{% url 'cover' filename=serie.coverFilename %}" alt="Placeholder image">
                                 </figure>
                                 <div class="anime-info has-text-centered">
-                                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{serie.anime.title}}</p>
+                                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{serie.title}}</p>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
             {% endfor %}
-
 
         </div>
 </section>

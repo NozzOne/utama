@@ -5,7 +5,7 @@
 <title>Directorio - Utama</title>
 
 
-<div class="section">
+<section class="section">
     <div class="container">
         <!-- center title  -->
         <h1 class="subtitle is-3 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
@@ -14,10 +14,31 @@
         <!-- end center title  -->
         <div class="container">
             <!-- select estado -->
-            <div class="columns">
-                <div class="column is-3">
-                    <div class="select is-fullwidth">
-                        <select id="select-estado">
+            <div class="columns is-multiline is-mobile">
+                <!-- Tipo -->
+                <!-- Orden -->
+                <div class="column is-3-desktop is-3-mobile is-3-tablet">
+                    <div class="tags-container-item-title">
+                        <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
+                            Orden
+                        </h1>
+                    </div>
+                    <div class="select-wrapper">
+                        <select class="select-style" name="orden" id="orden">
+                            <option value="0">Orden</option>
+                            <option value="1">Alfabético</option>
+                            <option value="2">Popularidad</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="column is-3-desktop is-3-mobile">
+                    <div class="tags-container-item-title">
+                        <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
+                            Estado
+                        </h1>
+                    </div>
+                    <div class="select-wrapper is-fullwidth select-estado-container">
+                        <select id="select-estado" class="select-style">
                             <option value="0">Todos los estados</option>
                             <option value="1">En Emisióm</option>
                             <option value="2">Finalizados</option>
@@ -26,34 +47,68 @@
                 </div>
                 <!-- end select estado -->
                 <!-- select genero -->
-                <div class="column is-3">
-                    <div class="select is-fullwidth">
-                        <select id="select-genero">
-                            <option value="0">Todos los generos</option>
-                            <option value="1">Accion</option>
-                            <option value="2">Comedia</option>
-                            <option value="3">Drama</option>
-                            <option value="4">Ecchi</option>
-                            <option value="5">Fantasia</option>
-                            <option value="6">Harem</option>
-                            <option value="7">Historico</option>
-                            <option value="8">Josei</option>
-                            <option value="9">Magia</option>
-                            <option value="10">Mecha</option>
-                            <option value="11">Misterio</option>
-                            <option value="12">Musica</option>
-                            <option value="13">Parodia</option>
-                            <option value="14">Psicológico</option>
-                            <option value="15">Romance</option>
-                            <option value="16">Shoujo</option>
-                            <option value="17">Shounen</option>
-                            <option value="18">Sobrenatural</option>
-                            <option value="19">Superpoderes</option>
-                            <option value="20">Tragedia</option>
-                            <option value="21">Vampiros</option></select>
+                <div class="column is-3-desktop is-3-mobile">
+                    <div class="tags-container-item-title">
+                        <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
+                            Letra
+                        </h1>
+                    </div>
+                    <div class="select-wrapper is-fullwidth">
+                        <select class="select-style" id="select-letra">
+                            <option value="0">Todas</option>
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="4">D</option>
+                            <option value="5">E</option>
+                            <option value="6">F</option>
+                            <option value="7">G</option>
+                            <option value="8">H</option>
+                            <option value="9">I</option>
+                            <option value="10">J</option>
+                            <option value="11">K</option>
+                            <option value="12">L</option>
+                            <option value="13">M</option>
+                            <option value="14">N</option>
+                            <option value="15">O</option>
+                            <option value="16">P</option>
+                            <option value="17">Q</option>
+                            <option value="18">R</option>
+                            <option value="19">S</option>
+                            <option value="20">T</option>
+                            <option value="21">U</option>
+                            <option value="22">V</option>
+                            <option value="23">W</option>
+                            <option value="24">X</option>
+                            <option value="25">Y</option>
+                            <option value="26">Z</option>
+                        </select>
                     </div>
                 </div>
-        </div>
+                <!-- end select genero -->
+                <!-- tipo -->
+                <div class="column is-3-desktop is-3-mobile">
+                    <div class="tags-container-item-title">
+                        <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
+                            Tipo
+                        </h1>
+                    </div>
+                    <div class="select-wrapper is-fullwidth">
+                        <select class="select-style" id="select-tipo">
+                            <option value="0">Todos</option>
+                            <option value="1">Anime</option>
+                            <option value="2">OVA</option>
+                            <option value="3">ONA</option>
+                            <option value="4">Manga</option>
+                            <option value="5">Película</option>
+                            <option value="6">Otros</option>
+                        </select>
+                    </div>
+
+                
+
+            </div>  
+
 
         <!-- position anime genres-->
         <div class="tags-container">
@@ -66,14 +121,35 @@
                 <div class="tags-container-item-content">
                     <div class="tags-container-item-content-item is-5" style="text-align: justify;">
                         {% for genero in generos %}
-                            <a href="{% url 'directorio_genero' genero=genero.name %}" class="tag is-size-6 mx-2 my-2" style="background-color: transparent; border: 1px solid var(--main-primary-color);color: var(--main-primary-color);text-shadow: 0 0 black;">{{genero.name}}</a>
+                            <a href="$" class="tag is-size-6 mx-2 my-2" style="background-color: transparent; border: 1px solid var(--main-primary-color);color: var(--main-primary-color);text-shadow: 0 0 black;">{{genero.name}}</a>
                         {% endfor %}
                     </div>
                 </div>
+            </div>
         </div>
+        
+        <!-- end position anime genres-->
+        <div class="columns is-multiline is-mobile">
+            {% for serie in animes %}
+                <div class="column is-3-desktop is-half-tablet is-4-mobile">
+                    <a href="{% url 'anime' id=serie.anime.id nombre=serie.anime.title%}">
+                        <div class="ui-box left-stay">
+                            <div class="ui-border-element a-container">
+                                <figure class="image is-2by3 zoom-out" >
+                                    <img class="dark-effect" src="{% url 'cover' filename=serie.filename %}" alt="Placeholder image">
+                                </figure>
+                                <div class="anime-info has-text-centered">
+                                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{serie.anime.title}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
 
-       
-    </div>
+        </div>
+        
+
 </section>
 
 {% endblock content %}

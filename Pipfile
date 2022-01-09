@@ -6,6 +6,12 @@ name = "pypi"
 [packages]
 django = "*"
 pillow = "*"
+djangorestframework = "*"
+elasticsearch = "~=6.0"
+elasticsearch-dsl = "~=6.0"
+django-elasticsearch-dsl = "~=6.0"
+django-elasticsearch-dsl-drf = "*"
+
 
 [dev-packages]
 

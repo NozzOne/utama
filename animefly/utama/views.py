@@ -1,26 +1,24 @@
 from django.shortcuts import render
-from .models import Anime, EpisodeThumbnail, Genres, AnimeGenres, AnimeCover, AnimeBackground, AnimeRender, Episode, AnimeEpisode
+from .models import Anime, Genres, AnimeGenres,  Episode, AnimeEpisode
 
 from django.http import FileResponse
 
 
 # Create your views here.
 def home(request):
-    MostPopular = AnimeBackground.objects.select_related('anime').order_by('-id')[:5]
-    episodios = EpisodeThumbnail.objects.select_related('episode').order_by('-id')[0:12]
-    Last_animes = AnimeCover.objects.select_related('anime').order_by('-id')[0:10]
+    MostPopular = Anime.objects.all().order_by('rating')[:5]
+    episodios = Episode.objects.all().order_by('-id')[0:12]
+    Last_animes = Anime.objects.all().order_by('-id')[0:12]
     return render(request, 'utama/home.html', {'MostPopular': MostPopular, 'caps': episodios, 'series': Last_animes})
 
 def anime(request, id, nombre=None):
+    # get anime
     anime = Anime.objects.get(id=id)
-    anime_genres = AnimeGenres.objects.filter(anime_id=id)
-    RenderAnime = AnimeRender.objects.get(anime_id=id).filename
-    episodios = EpisodeThumbnail.objects.select_related('episode').filter(episode__anime=id).order_by('-id')[0:12]
+    episodios = Episode.objects.filter(anime_id=id).order_by('-id')
     count_episodes = Episode.objects.filter(anime_id=id).count()
-    # get cover with anime id
-    cover = AnimeCover.objects.get(anime_id=id).filename
 
-    return render(request, 'utama/anime.html', {'anime': anime, 'capitulos': episodios, 'generos': anime_genres, 'render': RenderAnime, 'count': count_episodes, 'cover': cover})
+    
+    return render(request, 'utama/anime.html', {'anime': anime, 'capitulos': episodios, 'count': count_episodes})
 
 
 def ver(request, id, nombre=None):
@@ -30,39 +28,33 @@ def ver(request, id, nombre=None):
     prev = Episode.objects.filter(anime_id=episode.anime_id).filter(id__lt=episode.id).order_by('-id')[0:1]
     # get next episode
     next = Episode.objects.filter(anime_id=episode.anime_id).filter(id__gt=episode.id).order_by('id')[0:1]
-    # obtener animes con categoria similar
-    # anime_genres = AnimeGenres.objects.select_related('genre').filter(anime_id=episode.anime_id)
-    # similar = [i.genre.id for i in anime_genres][0]
-    # # get anime similar
-    # anime_similar = AnimeGenres.objects.filter(genre=similar).exclude(anime_id=episode.anime_id).distinct()[0:5]
+
 
     return render(request, 'utama/ver.html', {'episode': episode, 'servers': anime_episode, 'prev': prev, 'next': next})
 
 def directorio(request):
     # genres order by name
     generos = Genres.objects.order_by('name')
-    return render(request, 'utama/directorio.html', {'generos': generos})
+    # Last_animes = AnimeCover.objects.select_related('anime', 'anime_genres').order_by('-id')[0:10]
+    hola = "hola"
+    return render(request, 'utama/directorio.html', {'generos': generos, 'series': hola})
 
-def directorio_genero(request, id, nombre=None):
-    genero = Genres.objects.get(id=id)
-    animes = AnimeGenres.objects.select_related('anime').filter(genre=genero).order_by('-id')
-    return render(request, 'utama/directorio.html', {'animes': animes, 'genero': genero})
 
 def render_image(request, filename):
-    path = AnimeRender.objects.get(filename=filename).render.path
+    path = Anime.objects.get(renderFilename=filename).render.path
     return FileResponse(open(path, 'rb'), content_type='image/webp')
 
 def background_image(request, filename):
-    path = AnimeBackground.objects.get(filename=filename).background.path
+    path = Anime.objects.get(backgroundFilename=filename).background.path
     return FileResponse(open(path, 'rb'), content_type='image/webp')
 
 def cover_image(request, filename):
-    path = AnimeCover.objects.get(filename=filename).cover.path
+    path = Anime.objects.get(coverFilename=filename).cover.path
     return FileResponse(open(path, 'rb'), content_type='image/webp')
 
 
 def episode_image(request, filename):
-    path = EpisodeThumbnail.objects.get(filename=filename).thumbnail.path
+    path = Episode.objects.get(ThumbnailFilename=filename).Thumbnail.path
     return FileResponse(open(path, 'rb'), content_type='image/webp')
 
 
