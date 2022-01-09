@@ -2,7 +2,7 @@
 
 {% block content %}
 
-
+<title>{{episode.title}} Episodio {{episode.episode}} Sub Español - Utama</title>
 <section class="section">
     <div class="container">
         <div class="columns is-centered">
@@ -37,32 +37,52 @@
 
                     </div>
                     <div style="display: inline-flex; align-items: center; justify-content: space-between; flex-direction: row; width: 100%;">
-                        <div style="display:flex;">
-                            <a href="{% url 'anime' id=episode.anime_id nombre=episode.title %}" class="ver-anime-btn" style="color: var(--main-bg-color);">
-                                <span class="icon">
-                                    <i class="fas fa-list-ul"></i>
-                                </span>
-                            </a>
+                        <div class="left-container is-4" style="display: flex; flex-direction: row; align-items: center;">
+                            
+                            {% if prev.id != None %}
+                                <div style="display:flex;" class="mx-3">
+                                    <a href="{% url 'ver' id=prev.id %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
+                                        <span class="icon">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            {% endif %}
+
+                            <div style="display:flex;" class="mx-3">
+                                <a href="{% url 'anime' id=episode.anime_id nombre=episode.title %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
+                                    <span class="icon">
+                                        <i class="fas fa-list-ul"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            {% if next.id != None %}
+                                <div style="display:flex;" class="mx-3">
+                                    <a href="{% url 'ver' id=next.id %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
+                                        <span class="icon">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="fansub-btn" style="display:flex;">
+                            {% if episdoe.fsLink != None %}
                             <a href="{{episode.fsLink}}" target="_blank" class="button is-primary is-outlined">
                                 <span class="icon">
                                     <i class="fas fa-external-link-square-alt"></i>
                                 </span>
-                                {% if episode.fsLink == '' %}
-                                    <span>No Fansub</span>
-                                {% else %}
-                                    <span>Fansub</span>
-                                {% endif %}
+                                <span>
+                                    Fansub
+                                </span>
                             </a>
+                            {% endif %}
                         </div>
 
                     </div>
                 </div>
             </div>
-            <div class="column is-2">
-               <p style="color: white;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum optio incidunt at dolore. Exercitationem voluptas repudiandae quis unde, amet numquam voluptatibus ipsam minima quisquam reiciendis magnam! Obcaecati et similique quod.</p>
-            </div>
+
           </div>
     </div>
 </section>

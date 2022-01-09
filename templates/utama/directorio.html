@@ -1,0 +1,79 @@
+{% extends 'utama/layout.html' %}
+
+{% block content %}
+
+<title>Directorio - Utama</title>
+
+
+<div class="section">
+    <div class="container">
+        <!-- center title  -->
+        <h1 class="subtitle is-3 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
+            Lista de animes
+        </h1>
+        <!-- end center title  -->
+        <div class="container">
+            <!-- select estado -->
+            <div class="columns">
+                <div class="column is-3">
+                    <div class="select is-fullwidth">
+                        <select id="select-estado">
+                            <option value="0">Todos los estados</option>
+                            <option value="1">En Emisióm</option>
+                            <option value="2">Finalizados</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- end select estado -->
+                <!-- select genero -->
+                <div class="column is-3">
+                    <div class="select is-fullwidth">
+                        <select id="select-genero">
+                            <option value="0">Todos los generos</option>
+                            <option value="1">Accion</option>
+                            <option value="2">Comedia</option>
+                            <option value="3">Drama</option>
+                            <option value="4">Ecchi</option>
+                            <option value="5">Fantasia</option>
+                            <option value="6">Harem</option>
+                            <option value="7">Historico</option>
+                            <option value="8">Josei</option>
+                            <option value="9">Magia</option>
+                            <option value="10">Mecha</option>
+                            <option value="11">Misterio</option>
+                            <option value="12">Musica</option>
+                            <option value="13">Parodia</option>
+                            <option value="14">Psicológico</option>
+                            <option value="15">Romance</option>
+                            <option value="16">Shoujo</option>
+                            <option value="17">Shounen</option>
+                            <option value="18">Sobrenatural</option>
+                            <option value="19">Superpoderes</option>
+                            <option value="20">Tragedia</option>
+                            <option value="21">Vampiros</option></select>
+                    </div>
+                </div>
+        </div>
+
+        <!-- position anime genres-->
+        <div class="tags-container">
+            <div class="tags-container-item">
+                <div class="tags-container-item-title">
+                    <h1 class="subtitle is-5 has-text-left" style="color: var(--main-text-color-hover); font-family: montserrat;">
+                        Generos
+                    </h1>
+                </div>
+                <div class="tags-container-item-content">
+                    <div class="tags-container-item-content-item is-5" style="text-align: justify;">
+                        {% for genero in generos %}
+                            <a href="{% url 'directorio_genero' genero=genero.name %}" class="tag is-size-6 mx-2 my-2" style="background-color: transparent; border: 1px solid var(--main-primary-color);color: var(--main-primary-color);text-shadow: 0 0 black;">{{genero.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+        </div>
+
+       
+    </div>
+</section>
+
+{% endblock content %}

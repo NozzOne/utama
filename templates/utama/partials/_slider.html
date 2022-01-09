@@ -9,7 +9,7 @@
                         <img class="shadow-effect-blur" src="{% url 'background' filename=slider.filename %}" style="object-fit: cover; object-position: center;" alt="">
                     </figure>
                 </div>
-                <div class="slide-content columns is-2" style="align-items: center;">
+                <div class="slide-content columns is-2 is-flex" style="align-items: center;">
                     <!-- create vertical columns -->
                     <div class="column is-one-third" style="z-index: 2;">
                         <div class="slide-content-item">
@@ -26,11 +26,12 @@
                                         <span>{{ slider.anime.tipo }}</span>
                                     </p>
                                 </div>
-                                <div class="slide-content-item-description block">
+                                <div class="slide-content-item-description block truncate is-hidden-mobile" style="width: 100%;">
                                     <p class="text is-5 has-text-left" style="color: var(--main-text-color); font-family: Montserrat;">
                                         {{ slider.anime.description }}
                                     </p>
                                 </div>
+
                             </a>
                         </div>
                     </div>

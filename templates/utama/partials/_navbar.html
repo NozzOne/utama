@@ -1,25 +1,31 @@
 <!-- Create a navbar not use bulma css -->
 <div class="container is-max-desktop" style="margin-top: 10px;">
-    <nav class="navbar is-transparent" style="background-color: var(--main-bg-color);">
+    <nav class="navbar is-transparent is-active" style="background-color: var(--main-bg-color);">
+        <div class="navbar-brand is-3">
+            <a class="navbar-item ui-box bottom-stay is-gap-2" href="{% url 'home' %}">
+                <span class="is-size-3 ui-border-element" style="font-style:italic; font-weight:900; text-transform: uppercase; font-family: Montserrat; color: var(--main-text-color-hover);">Utama</span>
+            </a>
+            <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" style="color:var(--main-primary-color);">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
         <div class="navbar-menu" id="navMenu">
-            <div class="navbar-start is-gap-5">
-                <a class="navbar-item ui-box bottom-stay is-gap-2" href="{% url 'home' %}">
-                    <!-- add icon -->
-                    <span class="is-size-3 ui-border-element" style="font-style:italic; font-weight:900; text-transform: uppercase; font-family: Montserrat; color: var(--main-text-color-hover);">Utama</span>
-                </a>
-                <a class="navbar-item ui-box bottom-inOutSpread is-gap-2" href="{% url 'home' %}">
+            <div class="navbar-start is-8">
+                <a class="navbar-item ui-box bottom-inOutSpread is-max-width-mobile is-size-4-mobile" href="{% url 'directorio' %}">
                     <span>
                         <i style="color: var(--main-primary-color);" class="fas fa-folder"></i>
                     </span>
                     <span class="is-size-6 ui-border-element" style="font-style:normal; font-weight:400; padding: 3px; font-family: Montserrat; font-style: normal; color: var(--main-text-color-hover);">Directorio</span>
                 </a>
-                <a class="navbar-item ui-box bottom-inOutSpread is-gap-2" href="{% url 'home' %}">
+                <a class="navbar-item ui-box bottom-inOutSpread is-max-width-mobile is-size-4-mobile" href="{% url 'home' %}">
                     <span>
                         <i  style="color:var(--main-primary-color);" class="fas fa-calendar-week"></i>
                     </span>
                     <span class="is-size-6 ui-border-element" style="font-style:normal; font-weight:400; padding: 3px; font-family: Montserrat; font-style: normal; color: var(--main-text-color-hover);">Calendario</span>
                 </a>
-                <a class="navbar-item ui-box bottom-inOutSpread is-gap-2" href="{% url 'home' %}">
+                <a class="navbar-item ui-box bottom-inOutSpread is-max-width-mobile is-size-4-mobile" href="{% url 'home' %}">
                     <span>
                         <i style="color:var(--main-primary-color);" class="fas fa-random"></i>
                     </span>
@@ -28,10 +34,9 @@
             </div>
             <div class="navbar-end">
                 
-                <!-- add search box in navbar -->
-                <div class="navbar-item">
-                    <form action="/browse" method="get" style="display: inline-flex;">
-                        <div class="search-input-container">
+                <div class="navbar-item is-flex">
+                    <form action="/browse" method="get" style="display: inline-flex;width: 100%;">
+                        <div class="search-input-container" style="width: 100%;">
                             <input class="input-search" type="text" placeholder="Buscar..." name="q" autocomplete="off">
                         </div>
                         <!-- add button search -->
@@ -42,12 +47,6 @@
                         </button>
                     </form>
                 </div>
-                
-                <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
             </div>
         </div>
     </nav>

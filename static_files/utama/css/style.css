@@ -291,7 +291,6 @@ html{
     cursor: pointer;
     font-size: 1.2em;
     height: 40px;
-    padding: 0.5rem;
     width: 40px;
 }
 .videoWrapper {
@@ -307,3 +306,19 @@ html{
     width: 100%;
     height: 100%;
 }
+
+.truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: var(--line-clamp, 5);
+    -webkit-box-orient: vertical;
+    word-break: var(--word-break, "none");
+    overflow: hidden;
+  }
+
+@media only screen and (min-width: 600) {
+    
+}
+@media only screen and (max-width: 768px) {
+
+}
+

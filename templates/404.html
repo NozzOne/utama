@@ -1,0 +1,83 @@
+<!-- create 404 -->
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>404 Forbidden</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+        <style>
+            .container {
+                margin: 0 auto;
+                max-width: 672px;
+            }
+
+            .error-code {
+                font-size: 96px;
+                font-weight: 700;
+                color: #000;
+                margin-bottom: 40px;
+            }
+
+            .error-desc {
+                font-size: 16px;
+                color: #000;
+                margin-bottom: 40px;
+            }
+
+            .error-desc a {
+                color: #000;
+                text-decoration: none;
+            }
+
+            .error-desc a:hover {
+                text-decoration: underline;
+            }
+
+            .not-found {
+                font-size: 18px;
+                font-weight: 700;
+                color: #000;
+                margin-bottom: 40px;
+            }
+
+            .not-found a {
+                color: #000;
+                text-decoration: none;
+            }
+
+            .not-found a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <h1 class="title is-1">404</h1>
+                                    <h2 class="subtitle is-3">Page not found</h2>
+
+                                    <p class="not-found">La página que estás buscando puede haber sido eliminada, su nombre cambió o está temporalmente no disponible.</p>
+                                    <p class="not-found">Por favor, intenta lo siguiente:</p>
+                                    <ul>
+                                        <li>Comprueba tu ortografía</li>
+                                        <li>Vuelve a la <a href="{{ url('/') }}">página de inicio</a></li>
+                                        <li>Haz clic en el botón <a href="javascript:history.back()">Atrás</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

@@ -2,6 +2,7 @@
     
 {% block content %}
 
+<title>Anime sin anuncios - Utama</title>
 
 {% include 'utama/partials/_slider.html' with populares=MostPopular %}
 <!-- LAST EPISODES -->
@@ -15,9 +16,9 @@
             Ultimos episodios
         </h1>
 
-        <div class="columns is-multiline">
+        <div class="columns is-multiline is-mobile">
             {% for capitulo in caps %}
-                <div class="column is-one-quarter">
+                <div class="column is-3-desktop is-half-tablet is-4-mobile">
                     <a href="{% url 'ver' id=capitulo.id nombre=capitulo.episode.title %}">
                         <div class="ui-box topBottom-rightLeftCorner">
                             <div class="ui-border-element a-container">
@@ -55,9 +56,9 @@
             </span>
             Ultimos Animes
         </h1>
-        <div class="columns is-multiline">
+        <div class="columns is-multiline is-mobile">
             {% for serie in series %}
-                <div class="column is-one-quarter">
+                <div class="column is-3-desktop is-half-tablet is-4-mobile">
                     <a href="{% url 'anime' id=serie.anime.id nombre=serie.anime.title%}">
                         <div class="ui-box left-stay">
                             <div class="ui-border-element a-container">
