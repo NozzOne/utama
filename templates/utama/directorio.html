@@ -121,33 +121,56 @@
                 <div class="tags-container-item-content">
                     <div class="tags-container-item-content-item is-5" style="text-align: justify;">
                         {% for genero in generos %}
-                            <a href="$" class="tag is-size-6 mx-2 my-2" style="background-color: transparent; border: 1px solid var(--main-primary-color);color: var(--main-primary-color);text-shadow: 0 0 black;">{{genero.name}}</a>
+                            <a id="HOLA" class="is-size-6 mx-2 my-2 btn-tag" >{{genero.name}}</a>
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- end position anime genres-->
-        <div class="columns is-multiline is-mobile">
-            {% for serie in animes %}
-                <div class="column is-3-desktop is-half-tablet is-4-mobile">
-                    <a href="{% url 'anime' id=serie.anime.id nombre=serie.anime.title%}">
-                        <div class="ui-box left-stay">
-                            <div class="ui-border-element a-container">
-                                <figure class="image is-2by3 zoom-out" >
-                                    <img class="dark-effect" src="{% url 'cover' filename=serie.filename %}" alt="Placeholder image">
-                                </figure>
-                                <div class="anime-info has-text-centered">
-                                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{serie.anime.title}}</p>
+        <div class="container">
+            <div class="columns is-multiline is-mobile">
+                {% for serie in animes %}
+                    <div class="column is-2-desktop is-half-tablet is-4-mobile">
+                        <a href="{% url 'anime' id=serie.id nombre=serie.title %}">
+                            <div class="ui-box left-stay">
+                                <div class="ui-border-element a-container">
+                                    <figure class="image is-2by3 zoom-out" >
+                                        <img class="dark-effect" src="{% url 'cover' filename=serie.coverFilename %}" alt="Placeholder image">
+                                    </figure>
+                                    <div class="anime-info has-text-centered">
+                                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{serie.title}}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
+    </div>
+    <div class="container is-half">
+        <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+            <ul class="pagination-list">
+            {% if animes.has_previous  %}
+                <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                <li><a class="pagination-link" aria-label="Goto page 45">{{ animes.previous_page_number}}</a></li>
+            {% endif %}
+
+
+            <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">{{ animes.number}}</a></li>
+
+            {% if animes.has_next %}
+                <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+            {% endif %}
+        </ul></nav>
+    </div>
+</div>
+
         
 
 </section>

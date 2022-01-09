@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Anime, Genres, AnimeGenres,  Episode, AnimeEpisode
 
 from django.http import FileResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -33,11 +34,24 @@ def ver(request, id, nombre=None):
     return render(request, 'utama/ver.html', {'episode': episode, 'servers': anime_episode, 'prev': prev, 'next': next})
 
 def directorio(request):
-    # genres order by name
-    generos = Genres.objects.order_by('name')
-    # Last_animes = AnimeCover.objects.select_related('anime', 'anime_genres').order_by('-id')[0:10]
-    hola = "hola"
-    return render(request, 'utama/directorio.html', {'generos': generos, 'series': hola})
+    
+    animes = Anime.objects.all()
+    genres = Genres.objects.all().order_by('name')
+
+    # Pagination animes list
+    paginator = Paginator(animes, 12)
+    page = request.GET.get('page')
+    try:
+        animes = paginator.page(page)
+    except PageNotAnInteger:
+        animes = paginator.page(1)
+    except EmptyPage:
+        animes = paginator.page(paginator.num_pages)
+
+
+
+
+    return render(request, 'utama/directorio.html', {'generos': genres, 'animes': animes})
 
 
 def render_image(request, filename):

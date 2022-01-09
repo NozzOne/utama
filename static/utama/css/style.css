@@ -402,6 +402,38 @@ html{
     background: var(--main-bg-color);
 }
 
+.btn-tag{
+    background-color: transparent ;; 
+    border: 1px solid var(--main-primary-color) ;
+    color: var(--main-primary-color) ;
+    text-shadow: 0 0 black;
+    align-items: center;
+    border-radius: 4px;
+    display: inline-flex;
+    font-size: 0.75rem;
+    height: 2em;
+    justify-content: center;
+    line-height: 1.5;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    white-space: nowrap;
+}
+.btn-tag-active{
+    background-color: var(--main-primary-color) !important;; 
+    border: 1px solid var(--main-primary-color) !important;
+    color: var(--main-text-color-hover) !important;
+    text-shadow: 0 0 black !important;
+    align-items: center;
+    border-radius: 4px;
+    display: inline-flex;
+    font-size: 0.75rem;
+    height: 2em;
+    justify-content: center;
+    line-height: 1.5;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    white-space: nowrap;
+}
 
 
 
