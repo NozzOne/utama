@@ -32,7 +32,10 @@ class Anime(models.Model):
     description = models.TextField()
     tipo = models.CharField(max_length=50)
     status = models.CharField(max_length=50)
-    rating = models.IntegerField(default=0)
+    release = models.DateField()
+    rating = models.CharField(max_length=50)
+
+    
     coverFilename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
     cover = models.ImageField(upload_to=UploadToPathAndRename('media/cover'))
 
