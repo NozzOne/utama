@@ -1,0 +1,22 @@
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
+/home/nozz/animefly/animefly/utama/views.py:42: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'animefly.utama.models.Anime'> QuerySet.
+  paginator = Paginator(animes, 12)
