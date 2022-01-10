@@ -27,11 +27,12 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('anime/<int:id>/<str:nombre>', views.anime, name='anime'),
     path('ver/<int:id>/<str:nombre>', views.ver, name='ver'),
+    path('link/', views.getServerLink, name='getServerlink'),
     path('directorio/', views.directorio, name="directorio"),
 
-    path('media/render/<str:filename>', views.render_image, name='render'),
-    path('media/background/<str:filename>', views.background_image, name='background'),
-    path('media/cover/<str:filename>', views.cover_image, name='cover'),
-    path('media/episode/<str:filename>', views.episode_image, name='episode'),
+    path('media/render/<str:size>/<str:filename>', views.render_image, name='render'),
+    path('media/background/<str:size>/<str:filename>', views.background_image, name='background'),
+    path('media/cover/<str:size>/<str:filename>', views.cover_image, name='cover'),
+    path('media/episode/<str:size>/<str:filename>', views.episode_image, name='episode'),
 
 ]

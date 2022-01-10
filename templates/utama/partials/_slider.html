@@ -6,7 +6,7 @@
             <div class="keen-slider__slide number-slide1">
                 <div class="slider-cover">
                     <figure class="image is-3by1">
-                        <img class="shadow-effect-blur" src="{% url 'background' filename=slider.backgroundFilename %}" style="object-fit: cover; object-position: center;" alt="">
+                        <img class="shadow-effect-blur" src="{% url 'background' size='xxlarge' filename=slider.backgroundFilename %}" style="object-fit: cover; object-position: center;" alt="">
                     </figure>
                 </div>
                 <div class="slide-content columns is-2 is-flex" style="align-items: center;">
@@ -42,3 +42,44 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.js"></script>
+<script>
+    var slider = new KeenSlider(
+          "#slider-wrapper",
+          {
+            loop: true,
+          },
+          [
+            (slider) => {
+              let timeout
+              let mouseOver = false
+              function clearNextTimeout() {
+                clearTimeout(timeout)
+              }
+              function nextTimeout() {
+                clearTimeout(timeout)
+                if (mouseOver) return
+                timeout = setTimeout(() => {
+                  slider.next()
+                }, 4000)
+              }
+              slider.on("created", () => {
+                slider.container.addEventListener("mouseover", () => {
+                  mouseOver = true
+                  clearNextTimeout()
+                })
+                slider.container.addEventListener("mouseout", () => {
+                  mouseOver = false
+                  nextTimeout()
+                })
+                nextTimeout()
+              })
+              slider.on("dragStarted", clearNextTimeout)
+              slider.on("animationEnded", nextTimeout)
+              slider.on("updated", nextTimeout)
+            },
+          ]
+        )
+
+</script>

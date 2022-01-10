@@ -8,7 +8,7 @@
                 <div class="is-show-mobile ui-box topBottom-rightLeftCorner">
                     <div class="ui-border-element a-container">
                         <figure class="image is-2by3 zoom-out">
-                            <img class="shadow-effect-blur" src="{% url 'cover' filename=anime.coverFilename %}" style="object-fit: cover; object-position: center;" alt="">
+                            <img class="shadow-effect-blur" src="{% url 'cover' size='medium' filename=anime.coverFilename %}" style="object-fit: cover; object-position: center;" alt="">
                         </figure>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
             <div class="column is-4 is-hidden-mobile is-flex-direction-column">
                 <div class="image-cover is-hidden-mobile">
                     <figure class="image is-2by3 is-2by4-mobile">
-                        <img style="width: auto;" src="{% url 'render' filename=anime.renderFilename %}" alt="{{anime.title}}">
+                        <img style="width: auto;" src="{% url 'render' size='large' filename=anime.renderFilename %}" alt="{{anime.title}}">
                     </figure>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                         <div class="ui-box topBottom-rightLeftCorner">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-5by3 zoom-out" >
-                                    <img class="dark-effect render" src="{% url 'episode' filename=capitulo.ThumbnailFilename %}" alt="Placeholder image">
+                                    <img class="dark-effect render" src="{% url 'episode' size='medium' filename=capitulo.ThumbnailFilename %}" alt="Placeholder image">
                                 </figure>
                                 <div class="anime-info " style="width: 100%;">
                                     <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{capitulo.title}}</p>

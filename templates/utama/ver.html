@@ -23,17 +23,16 @@
                       <ul>
                         {% for server in servers %}
                             <li>
-                                <a id="tab">{{ server.server}}</a>
+                                <a  id="tab" onclick="getServerlink({{ episode.id }}, '{{ server.server }}')">{{ server.server}}</a>
                             </li>
                         {% endfor %}
                       </ul>
                     </div>
                     <div>
-                    {% for server in servers %}
+
                         <section  class="tab-content block videoWrapper" style="padding: 0; position: relative; padding-bottom: 56.25%;  padding-top: 25px; height: 0;">
-                            <iframe class="iframeWrapper iframe" width="640"  src="{{ server.link }}" allowfullscreen webkitallowfullscreen scrolling="no" frameborder="0"></iframe>
+                            <iframe id="framez"  class="iframeWrapper iframe" width="640"  src="" allowfullscreen webkitallowfullscreen scrolling="no" frameborder="0"></iframe>
                         </section>
-                    {% endfor %}
 
                     </div>
                     <div style="display: inline-flex; align-items: center; justify-content: space-between; flex-direction: row; width: 100%;">
@@ -87,6 +86,79 @@
     </div>
 </section>
 
+<script>
 
+
+    function getServerlink(id, server) {
+        $.ajax(
+            {
+                type:"POST",
+                url: decodeURI('{% url "getServerlink" %}'),
+                data: {
+                    id: id,
+                    server: server
+                },
+
+            })
+            .done(function(data) {
+                console.log(data);
+                $('#framez').attr('src', data);
+            })
+            .fail(function(data) {
+                console.log(data);
+            })
+    }
+</script>
+
+
+<script>
+    
+    let tabsWithContent = (function () {
+        let tabs = document.querySelectorAll('.tabs li');
+        let tabsContent = document.querySelectorAll('.tab-content');
+        
+        // create iframe
+
+        let deactvateAllTabs = function () {
+          
+          tabs.forEach(function (tab) {
+            tab.classList.remove('is-active');
+            
+          });
+        };
+
+        let hideTabsContent = function () {
+          
+          tabsContent.forEach(function (tabContent) {
+            tabContent.classList.remove('is-active');
+            
+          });
+        };
+
+        let activateTabsContent = function (tab) {
+          tabsContent[getIndex(tab)].classList.add('is-active');
+        };
+
+        let getIndex = function (el) {
+          return [...el.parentElement.children].indexOf(el);
+        };
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            deactvateAllTabs();
+            // reload all items with classname iframe
+            let iframe = document.querySelectorAll('.iframe');
+            iframe.forEach(function (item) {
+              item.src = item.src;
+            });
+            tab.classList.add('is-active');
+            activateTabsContent(tab);
+          });
+        })
+
+        // another click
+        tabs[0].click();
+      })();
+</script>
     
 {% endblock %}

@@ -62,10 +62,12 @@ class Episode(models.Model):
     id = models.AutoField(primary_key=True)
     anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
     episode = models.IntegerField()
+    is_premiere = models.BooleanField(default=False)
     title = models.CharField(max_length=100)
     titleEn = models.CharField(max_length=100)
     fansub = models.CharField(max_length=100, blank=True)
     fsLink = models.CharField(max_length=100, blank=True)
+    
     ThumbnailFilename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
     Thumbnail = models.ImageField(upload_to=UploadToPathAndRename('media/thumbnail'))
     
