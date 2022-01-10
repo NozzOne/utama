@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'animefly.utama',
+    'admin_honeypot',
+    'smart_selects',
+    
 ]
 
 

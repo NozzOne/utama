@@ -12,8 +12,8 @@ from PIL import Image
 from io import BytesIO
 # Create your views here.
 def home(request):
-    MostPopular = Anime.objects.all().order_by('rating')[:5]
-    episodios = Episode.objects.all().order_by('-id')[0:12]
+    MostPopular = Anime.objects.filter(rating__gte=8)[:5]
+    episodios = Episode.objects.filter(is_premiere=1).order_by('-id')[0:12]
     Last_animes = Anime.objects.all().order_by('-id')[0:12]
     return render(request, 'utama/home.html', {'MostPopular': MostPopular, 'caps': episodios, 'series': Last_animes})
 
@@ -33,7 +33,10 @@ def ver(request, id, nombre=None):
     prev = Episode.objects.filter(anime_id=episode.anime_id).filter(id__lt=episode.id).order_by('-id')[0:1]
     next = Episode.objects.filter(anime_id=episode.anime_id).filter(id__gt=episode.id).order_by('id')[0:1]
     return render(request, 'utama/ver.html', {'episode': episode, 'servers': anime_episode, 'prev': prev, 'next': next})
-    
+
+def random(request):
+    return render(request, 'utama/anime.html', {'anime': anime, 'capitulos': episodios, 'count': count_episodes})
+
 
 @csrf_exempt
 def getServerLink(request):

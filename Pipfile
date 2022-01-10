@@ -11,7 +11,8 @@ elasticsearch = "~=6.0"
 elasticsearch-dsl = "~=6.0"
 django-elasticsearch-dsl = "~=6.0"
 django-elasticsearch-dsl-drf = "*"
-
+django-admin-honeypot = {git = "https://github.com/dmpayton/django-admin-honeypot"}
+django-smart-selects = {git = "https://github.com/jazzband/django-smart-selects"}
 
 [dev-packages]
 
