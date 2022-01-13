@@ -51,7 +51,7 @@
         $(document).ready(function(){    
           $('#search').keyup(function(){
             const search = $(this).val().trim();
-
+            const flag = false;
 
             if(search.length == 0){
               $('#search-result').hide();
@@ -62,7 +62,11 @@
             }
           });
         $('#search').focusout(function(){
-          $('#search-result').hide();
+          // set delay and hide
+          setTimeout(function(){
+            $('#search-result').hide();
+          }, 100);
+        
         });
         $('#search').focus(function(){
           $('#search-result').show();

@@ -3,38 +3,23 @@ from django.shortcuts import redirect, render
 from django.http import FileResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from django.contrib.gis.geoip2 import GeoIP2
 
 from .models import Anime, Genres, AnimeGenres,  Episode, AnimeEpisode
 
 
 from PIL import Image
 from io import BytesIO
-from ipware import get_client_ip
 
-def check_ip(request):
-    client_ip, is_routable = get_client_ip(request)
-    g = GeoIP2()
-    if client_ip is None:
-        # redirect
-        return redirect('null')
-    else:
 
-        if g.country(client_ip)['country_code'] not in ['MX', 'CO', 'ES', 'AR', 'PE', 'VE', 'CL', 'GT', 'EC', 'CU', 'BO', 'DO', 'HN','SV', 'PY', 'NI', 'CR', 'PA', 'PR', 'UY', 'BZ']:
-            return redirect('home')
-        else:
-            return redirect('null')
 
 # Create your views here.
 def home(request):
-    check_ip(request)
     MostPopular = Anime.objects.filter(rating__gte=8)[:5]
     episodios = Episode.objects.filter(is_premiere=1).order_by('-id')[0:12]
     Last_animes = Anime.objects.all().order_by('-id')[0:12]
     return render(request, 'utama/home.html', {'MostPopular': MostPopular, 'caps': episodios, 'series': Last_animes})
 
 def anime(request, id, nombre=None):
-    check_ip(request)
     anime = Anime.objects.get(id=id)
     episodios = Episode.objects.filter(anime_id=id).order_by('-id')
     count_episodes = Episode.objects.filter(anime_id=id).count()
@@ -42,7 +27,6 @@ def anime(request, id, nombre=None):
 
 
 def ver(request, id, nombre=None):
-    check_ip(request)
     episode = Episode.objects.get(id=id)
     anime_episode = AnimeEpisode.objects.filter(episode_id=id).order_by('server')
     prev = Episode.objects.filter(anime__id=episode.anime_id).filter(id__lt=episode.id).order_by('-id')[0:1]
