@@ -1,6 +1,8 @@
+import random
+import string
 from django.db import models
 from django.utils.deconstruct import deconstructible
-from smart_selects.db_fields import GroupedForeignKey, ChainedForeignKey
+from smart_selects.db_fields import ChainedForeignKey
 
 
 from uuid import uuid4
@@ -36,13 +38,13 @@ class Anime(models.Model):
     rating = models.CharField(max_length=50)
 
     
-    coverFilename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
+    coverFilename = models.UUIDField(default=uuid4, editable=False, unique=True)
     cover = models.ImageField(upload_to=UploadToPathAndRename('media/cover'))
 
-    backgroundFilename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
+    backgroundFilename = models.UUIDField(default=uuid4, editable=False, unique=True)
     background = models.ImageField(upload_to=UploadToPathAndRename('media/background'))
 
-    renderFilename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
+    renderFilename = models.UUIDField(default=uuid4, editable=False, unique=True)
     render = models.ImageField(upload_to=UploadToPathAndRename('media/render'))
 
     def __str__(self):
@@ -72,7 +74,7 @@ class Episode(models.Model):
     fansub = models.CharField(max_length=100, blank=True)
     fsLink = models.CharField(max_length=100, blank=True)
     
-    ThumbnailFilename = models.UUIDField(default=str(uuid4().hex), editable=False, unique=True)
+    ThumbnailFilename = models.UUIDField(default=uuid4, editable=False, unique=True)
     Thumbnail = models.ImageField(upload_to=UploadToPathAndRename('media/thumbnail'))
     
     def __str__(self):
