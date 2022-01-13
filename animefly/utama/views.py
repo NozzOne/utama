@@ -11,7 +11,6 @@ from .models import Anime, Genres, AnimeGenres,  Episode, AnimeEpisode
 from PIL import Image
 from io import BytesIO
 from ipware import get_client_ip
-from ..settings import GEOIP_PATH
 
 def check_ip(request):
     client_ip, is_routable = get_client_ip(request)
@@ -21,7 +20,7 @@ def check_ip(request):
         return redirect('null')
     else:
 
-        if g.country(client_ip)['country_code'] in ['MX', 'CO', 'ES', 'AR', 'PE', 'VE', 'CL', 'GT', 'EC', 'CU', 'BO', 'DO', 'HN','SV', 'PY', 'NI', 'CR', 'PA', 'PR', 'UY', 'BZ']:
+        if g.country(client_ip)['country_code'] not in ['MX', 'CO', 'ES', 'AR', 'PE', 'VE', 'CL', 'GT', 'EC', 'CU', 'BO', 'DO', 'HN','SV', 'PY', 'NI', 'CR', 'PA', 'PR', 'UY', 'BZ']:
             return redirect('home')
         else:
             return redirect('null')
@@ -55,12 +54,10 @@ def notaccess(request):
     return render(request, 'utama/notaccess.html', {})
 
 def random(request):
-    check_ip(request)
     anime = Anime.objects.order_by('?').first()
     return redirect('/anime/'+str(anime.id)+'/'+anime.title)
 
 def getServerLink(request):
-    check_ip(request)
     if request.method == 'POST':
         id = request.POST['id']
         server = request.POST['server']
@@ -69,7 +66,6 @@ def getServerLink(request):
 
 
 def getdata(request):
-    check_ip(request)
     search = request.POST.get('search');
     animelist  = []
     if search != '':
@@ -93,7 +89,6 @@ def getdata(request):
 
 
 def directorio(request):
-    check_ip(request)
     animes = Anime.objects.all()
     genres = Genres.objects.all().order_by('name')
 
@@ -111,7 +106,6 @@ def directorio(request):
 
 
 def render_image(request, size,filename):
-    check_ip(request)
     small = (200,200)
     medium = (400,400)
     large = (600,600)
@@ -140,7 +134,6 @@ def render_image(request, size,filename):
 
 
 def background_image(request, size,filename):
-    check_ip(request)
     small = (200,200)
     medium = (400,400)
     large = (600,600)
@@ -169,7 +162,6 @@ def background_image(request, size,filename):
     return FileResponse(img_io, content_type='image/webp')
 
 def cover_image(request, size,filename):
-    check_ip(request)
     small = (200,200)
     medium = (400,400)
     large = (600,600)
@@ -199,7 +191,6 @@ def cover_image(request, size,filename):
 
 
 def episode_image(request, size,filename):
-    check_ip(request)
     small = (200,200)
     medium = (400,400)
     large = (600,600)
