@@ -38,7 +38,8 @@ urlpatterns = [
     path('link/', views.getServerLink, name='getServerlink'),
     path('directorio/', views.directorio, name="directorio"),
     path('random', views.random, name="random"),
-
+    path('getdata/', views.getdata, name="search"),
+    path('notaccess', views.notaccess, name="null"),
 
     # media
     path('media/render/<str:size>/<str:filename>', views.render_image, name='render'),

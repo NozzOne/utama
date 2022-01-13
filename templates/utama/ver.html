@@ -31,16 +31,16 @@
                     <div>
 
                         <section  class="tab-content block videoWrapper" style="padding: 0; position: relative; padding-bottom: 56.25%;  padding-top: 25px; height: 0;">
-                            <iframe id="framez"  class="iframeWrapper iframe" width="640"  src="" allowfullscreen webkitallowfullscreen scrolling="no" frameborder="0"></iframe>
+                            <iframe id="framez"  class="iframeWrapper iframe" width="640"  src="{{servers.0.link}}" allowfullscreen webkitallowfullscreen scrolling="no" frameborder="0"></iframe>
                         </section>
 
                     </div>
-                    <div style="display: inline-flex; align-items: center; justify-content: space-between; flex-direction: row; width: 100%;">
+                    <div style="display: inline-flex; align-items: center; justify-content: space-between; flex-direction: row; width: 100%;" class="my-3">
                         <div class="left-container is-4" style="display: flex; flex-direction: row; align-items: center;">
                             
-                            {% if prev.id != None %}
+                            {% if prev.0.id != None %}
                                 <div style="display:flex;" class="mx-3">
-                                    <a href="{% url 'ver' id=prev.id %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
+                                    <a href="{% url 'ver' id=prev.0.id nombre=episode.title %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
                                         <span class="icon">
                                             <i class="fas fa-arrow-left"></i>
                                         </span>
@@ -55,9 +55,9 @@
                                     </span>
                                 </a>
                             </div>
-                            {% if next.id != None %}
+                            {% if sig.0.id != None %}
                                 <div style="display:flex;" class="mx-3">
-                                    <a href="{% url 'ver' id=next.id %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
+                                    <a href="{% url 'ver' id=sig.0.id nombre=episode.title %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
                                         <span class="icon">
                                             <i class="fas fa-arrow-right"></i>
                                         </span>
@@ -92,11 +92,13 @@
     function getServerlink(id, server) {
         $.ajax(
             {
-                type:"POST",
                 url: decodeURI('{% url "getServerlink" %}'),
+                headers: {'X-CSRFToken': "{{ csrf_token }}"},
+                type:"POST",
                 data: {
                     id: id,
-                    server: server
+                    server: server,
+
                 },
 
             })

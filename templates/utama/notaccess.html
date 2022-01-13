@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+<head>
+   
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+    <link rel='shortcut icon' type='image/x-icon' href='{% static "favicon.ico" %}' />
+
+</head>
+<body >
+
+    <!-- This site is not available in your country  -->
+    <div class="not-available-country">
+        <div class="not-available-country-container">
+            <div class="not-available-country-content">
+                <div class="not-available-country-content-text">
+                    <h1>
+                        <span>
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </span>
+                        <span>
+                            This site is not available in your country
+                        </span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <style>
+        *{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-transform: uppercase;
+        }
+        :root{
+            --main-bg-color:#171717;
+            --seondary-bg-color:#444444;
+            --main-text-color: #bdbdbd;
+            --main-text-color-hover: #FFF;
+            --main-primary-color: #da0037;
+        }
+
+        .not-available-country {
+            background-color: var(--main-bg-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+        }
+        .not-available-country-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .not-available-country-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .not-available-country-content-text {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .not-available-country-content-text h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--main-text-color-hover);
+            text-align: center;
+        }
+        .not-available-country-content-text h1 span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: var(--main-text-color-hover);
+            text-align: center;
+        }
+        .not-available-country-content-text h1 span i {
+            font-size: 3rem;
+            color: #ff0000;
+        }
+
+      </style>
+</body>
+</html>

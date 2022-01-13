@@ -25,7 +25,7 @@
                     </span>
                     <span class="is-size-6 ui-border-element" style="font-style:normal; font-weight:400; padding: 3px; font-family: Montserrat; font-style: normal; color: var(--main-text-color-hover);">Calendario</span>
                 </a>
-                <a class="navbar-item ui-box bottom-inOutSpread is-max-width-mobile is-size-4-mobile" href="{% url 'home' %}">
+                <a class="navbar-item ui-box bottom-inOutSpread is-max-width-mobile is-size-4-mobile" href="{% url 'random' %}">
                     <span>
                         <i style="color:var(--main-primary-color);" class="fas fa-random"></i>
                     </span>
@@ -35,19 +35,23 @@
             <div class="navbar-end">
                 
                 <div class="navbar-item is-flex">
-                    <form action="/browse" method="get" style="display: inline-flex;width: 100%;">
-                        <div class="search-input-container" style="width: 100%;">
-                            <input class="input-search" type="text" placeholder="Buscar..." name="q" autocomplete="off">
+                    <div class="search-container is-flex-direction-column" >
+                        <div class="search-input-container is-flex is-flex-direction-row" s>
+                            <input class="input-search" id="search" aria-describedby="search-result" type="text" placeholder="Buscar..." name="q" autocomplete="off">
+                            <button class="btn-search" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
                         </div>
-                        <!-- add button search -->
-                        <button class="btn-search" type="submit">
-                            <span class="icon">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </button>
-                    </form>
+                        <div class="columns is-multiline my-2" id="search-result" role="search-result">
+                            
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
+        <!-- search result -->
 </div>

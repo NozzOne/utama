@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
+print(GEOIP_PATH)
+
+print(GEOIP_PATH)
 
 # Application definition
 

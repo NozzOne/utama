@@ -435,19 +435,39 @@ html{
     white-space: nowrap;
 }
 
-
-
-
-
-
-
-
-
-
-@media only screen and (min-width: 600) {
-    
+#search-result{
+    position: absolute; visibility: visible; background-color: var(--main-bg-color); border-radius: 10px; 
 }
-@media only screen and (max-width: 768px) {
-
+/* set results position relative in mobile */
+@media screen and (max-width: 600px) {
+    #search-result{
+        position: relative;
+    }
+    .search-container{
+        width: 100%;
+    }
 }
-
+/* set results position relative in tablet */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+    #search-result{
+        position: relative;
+    }
+    .search-container{
+        width: 100%;
+    }
+}
+/* set results position absolute in desktop */
+@media screen and (min-width: 900px) {
+    #search-result{
+        position: relative;
+    }
+    .search-container{
+        width: 100%;
+    }
+}
+/* set results position absolute in desktop */
+@media screen and (min-width: 1024px) {
+    #search-result{
+        position: absolute;
+    }
+}
