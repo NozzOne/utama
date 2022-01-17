@@ -11,10 +11,10 @@
                 <div class="name-container block" style="display: inline-flex;width: 100%;flex-wrap: nowrap;justify-content: space-between; align-items: center;">
                     <div class="name-container-names" style="display: flex; flex-direction: column;">
                         <h1 class="subtitle is-4 has-text-left" style="font-style:normal; font-weight:800; padding: 3px; font-family: Montserrat; font-style: normal; color: var(--main-text-color-hover); margin-bottom: 0;">
-                            {{episode.title}} - {{episode.episode}}
+                            {{episode.anime.title}} - {{episode.episode}}
                         </h1>
                         <h2 class="subtitle is-6 has-text-left block" style="font-style:normal; font-weight:800; padding: 3px; font-family: Montserrat; font-style: normal; color: var(--main-text-color);">
-                            {{episode.titleEn}} - {{episode.episode}}
+                            {{episode.anime.titleEn}} - {{episode.episode}}
                         </h2>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                             
                             {% if prev.0.id != None %}
                                 <div style="display:flex;" class="mx-3">
-                                    <a href="{% url 'ver' id=prev.0.id nombre=episode.title %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
+                                    <a href="{% url 'ver' id=prev.0.id nombre=episode.anime.slug %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
                                         <span class="icon">
                                             <i class="fas fa-arrow-left"></i>
                                         </span>
@@ -49,7 +49,7 @@
                             {% endif %}
 
                             <div style="display:flex;" class="mx-3">
-                                <a href="{% url 'anime' id=episode.anime_id nombre=episode.title %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
+                                <a href="{% url 'anime' id=episode.anime_id nombre=episode.anime.slug %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
                                     <span class="icon">
                                         <i class="fas fa-list-ul"></i>
                                     </span>
@@ -57,7 +57,7 @@
                             </div>
                             {% if sig.0.id != None %}
                                 <div style="display:flex;" class="mx-3">
-                                    <a href="{% url 'ver' id=sig.0.id nombre=episode.title %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
+                                    <a href="{% url 'ver' id=sig.0.id nombre=episode.anime.title %}" class="ver-anime-btn icon" style="color: var(--main-bg-color);">
                                         <span class="icon">
                                             <i class="fas fa-arrow-right"></i>
                                         </span>
@@ -86,81 +86,12 @@
     </div>
 </section>
 
-<script>
-
-
-    function getServerlink(id, server) {
-        $.ajax(
-            {
-                url: decodeURI('{% url "getServerlink" %}'),
-                headers: {'X-CSRFToken': "{{ csrf_token }}"},
-                type:"POST",
-                data: {
-                    id: id,
-                    server: server,
-
-                },
-
-            })
-            .done(function(data) {
-                console.log(data);
-                $('#framez').attr('src', data);
-            })
-            .fail(function(data) {
-                console.log(data);
-            })
-    }
-</script>
 
 
 <script>
-    
-    let tabsWithContent = (function () {
-        let tabs = document.querySelectorAll('.tabs li');
-        let tabsContent = document.querySelectorAll('.tab-content');
-        
-        // create iframe
-
-        let deactvateAllTabs = function () {
-          
-          tabs.forEach(function (tab) {
-            tab.classList.remove('is-active');
-            
-          });
-        };
-
-        let hideTabsContent = function () {
-          
-          tabsContent.forEach(function (tabContent) {
-            tabContent.classList.remove('is-active');
-            
-          });
-        };
-
-        let activateTabsContent = function (tab) {
-          tabsContent[getIndex(tab)].classList.add('is-active');
-        };
-
-        let getIndex = function (el) {
-          return [...el.parentElement.children].indexOf(el);
-        };
-
-        tabs.forEach(function (tab) {
-          tab.addEventListener('click', function () {
-            deactvateAllTabs();
-            // reload all items with classname iframe
-            let iframe = document.querySelectorAll('.iframe');
-            iframe.forEach(function (item) {
-              item.src = item.src;
-            });
-            tab.classList.add('is-active');
-            activateTabsContent(tab);
-          });
-        })
-
-        // another click
-        tabs[0].click();
-      })();
+var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.arrayIteratorImpl=function(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}};$jscomp.arrayIterator=function(a){return{next:$jscomp.arrayIteratorImpl(a)}};$jscomp.makeIterator=function(a){var b="undefined"!=typeof Symbol&&Symbol.iterator&&a[Symbol.iterator];return b?b.call(a):$jscomp.arrayIterator(a)};$jscomp.arrayFromIterator=function(a){for(var b,c=[];!(b=a.next()).done;)c.push(b.value);return c};
+$jscomp.arrayFromIterable=function(a){return a instanceof Array?a:$jscomp.arrayFromIterator($jscomp.makeIterator(a))};function getServerlink(a,b){$.ajax({url:decodeURI('{% url "getServerlink" %}'),headers:{"X-CSRFToken":"{{ csrf_token }}"},type:"POST",data:{id:a,server:b}}).done(function(c){console.log(c);$("#framez").attr("src",c)}).fail(function(c){console.log(c)})}
+var tabsWithContent=function(){var a=document.querySelectorAll(".tabs li"),b=document.querySelectorAll(".tab-content"),c=function(){a.forEach(function(d){d.classList.remove("is-active")})},f=function(d){return[].concat($jscomp.arrayFromIterable(d.parentElement.children)).indexOf(d)};a.forEach(function(d){d.addEventListener("click",function(){c();document.querySelectorAll(".iframe").forEach(function(e){e.src=e.src});d.classList.add("is-active");b[f(d)].classList.add("is-active")})});a[0].click()}();
 </script>
     
 {% endblock %}

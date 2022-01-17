@@ -29,17 +29,20 @@ urlpatterns = [
     # admin
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     re_path(r'^chaining/', include('smart_selects.urls')),
-    path('valeriko/', admin.site.urls),
+    path('valeriko', admin.site.urls),
 
     # utama
     path('', views.home, name='home'),
     path('anime/<int:id>/<str:nombre>', views.anime, name='anime'),
     path('ver/<int:id>/<str:nombre>', views.ver, name='ver'),
-    path('link/', views.getServerLink, name='getServerlink'),
-    path('directorio/', views.directorio, name="directorio"),
+    path('link', views.getServerLink, name='getServerlink'),
+    path('directorio', views.directorio, name="directorio"),
     path('random', views.random, name="random"),
-    path('getdata/', views.getdata, name="search"),
-    path('notaccess', views.notaccess, name="null"),
+    path('notaccess', views.notaccess, name="notaccess"),
+    # path('broadcast', views.broadcast, name="broadcast"),
+
+    # datas
+    path('search', views.getdata, name="search"),
 
     # media
     path('media/render/<str:size>/<str:filename>', views.render_image, name='render'),

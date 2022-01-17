@@ -42,44 +42,7 @@
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.js"></script>
 <script>
-    var slider = new KeenSlider(
-          "#slider-wrapper",
-          {
-            loop: true,
-          },
-          [
-            (slider) => {
-              let timeout
-              let mouseOver = false
-              function clearNextTimeout() {
-                clearTimeout(timeout)
-              }
-              function nextTimeout() {
-                clearTimeout(timeout)
-                if (mouseOver) return
-                timeout = setTimeout(() => {
-                  slider.next()
-                }, 4000)
-              }
-              slider.on("created", () => {
-                slider.container.addEventListener("mouseover", () => {
-                  mouseOver = true
-                  clearNextTimeout()
-                })
-                slider.container.addEventListener("mouseout", () => {
-                  mouseOver = false
-                  nextTimeout()
-                })
-                nextTimeout()
-              })
-              slider.on("dragStarted", clearNextTimeout)
-              slider.on("animationEnded", nextTimeout)
-              slider.on("updated", nextTimeout)
-            },
-          ]
-        )
-
+var slider=new KeenSlider("#slider-wrapper",{loop:!0},[function(a){function e(){clearTimeout(c)}function b(){clearTimeout(c);d||(c=setTimeout(function(){a.next()},4E3))}var c,d=!1;a.on("created",function(){a.container.addEventListener("mouseover",function(){d=!0;e()});a.container.addEventListener("mouseout",function(){d=!1;b()});b()});a.on("dragStarted",e);a.on("animationEnded",b);a.on("updated",b)}]);
 </script>

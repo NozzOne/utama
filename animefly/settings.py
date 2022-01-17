@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from pickle import APPEND
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+APPEND_SLASH = False
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +43,10 @@ INSTALLED_APPS = [
     'animefly.utama',
     'admin_honeypot',
     'smart_selects',
-    
+    'import_export',
+    'django_filters',
+    'django_cleanup.apps.CleanupConfig',
+    'django_unused_media',
 ]
 
 
@@ -52,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'animefly.urls'
@@ -130,3 +137,15 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://www.google-analytics.com/analytics.js', 'https://www.googletagmanager.com/gtag/js', 'https://www.googletagmanager.com/gtm.js')
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'https://fonts.googleapis.com/css?family=Roboto:400,500,700')
+CSP_IMG_SRC = ("'self'", 'data:', 'https://www.google-analytics.com/analytics.js', 'https://www.googletagmanager.com/gtag/js', 'https://www.googletagmanager.com/gtm.js')
+CSP_CONNECT_SRC = ("'self'", 'https://www.google-analytics.com/analytics.js', 'https://www.googletagmanager.com/gtag/js', 'https://www.googletagmanager.com/gtm.js')
+CSP_FONT_SRC = ("'self'", 'https://fonts.gstatic.com/s/roboto/')
+CSP_FRAME_SRC = ("'self'", 'https://www.google-analytics.com/analytics.js', 'https://www.googletagmanager.com/gtag/js', 'https://www.googletagmanager.com/gtm.js')
+CSP_FORM_ACTION = ("'self'",)
+CSP_REPORT_ONLY = True
+CSP_REPORT_ENABLE = True
+CSP_REPORT_LOG_URI = '/csp/log'
