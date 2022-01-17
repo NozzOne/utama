@@ -65,7 +65,7 @@
         <div class="columns is-multiline is-mobile">
             {% for capitulo in capitulos %}
                 <div class="column is-3-desktop is-3-tablet is-4-mobile">
-                    <a href="{% url 'ver' id=capitulo.id nombre=capitulo.title %}">
+                    <a href="{% url 'ver' id=capitulo.id nombre=capitulo.anime.slug %}">
                         <div class="ui-box topBottom-rightLeftCorner">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-5by3 zoom-out" >

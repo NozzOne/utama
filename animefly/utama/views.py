@@ -2,13 +2,14 @@ from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.http import FileResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q
+from django.db.models import Q, Value, CharField
 
 from .models import Anime, Genres, AnimeGenres,  Episode, AnimeEpisode
-
+from .filters import AnimeFilter
 
 from PIL import Image
 from io import BytesIO
+from datetime import timedelta, date
 
 
 
@@ -61,9 +62,6 @@ def getdata(request):
             {
                 'slug'        :person.pk, 
                 'title'      :person.title, 
-                'titleEn'    :person.titleEn,
-                'titleEs'    :person.titleEs,
-                'description':person.description,
                 'image'      :person.coverFilename,
                 'tipo'     :person.tipo,
             }
@@ -72,21 +70,87 @@ def getdata(request):
     return JsonResponse({'persons':animelist});
 
 
-def directorio(request):
-    animes = Anime.objects.all()
-    genres = Genres.objects.all().order_by('name')
 
-    # Pagination animes list
-    paginator = Paginator(animes, 12)
+def getfilter(request):
+    r = request.POST
+
+    animelist = []
+    if r.get('tipo') == 'categoria' and r.get('search') != '':
+        animes = AnimeGenres.objects.filter(genre__name="%s" % r.get('search'))
+        
+    for anime in animes:
+        animelist.append(
+            {
+                'slug'       :anime.anime.pk,
+                'title'      :anime.anime.title, 
+                'fix'        :f"{anime.anime.title}".replace(" ", "-"),
+                'image'      :anime.anime.coverFilename,
+                'tipo'       :anime.anime.tipo,
+                'status'     :anime.anime.status,
+                'rating'     :anime.anime.rating,
+            }
+        )
+    return JsonResponse({'animelist': animelist})
+
+def directorio(request):
+
+
+    ids = list(AnimeGenres.objects.values_list('anime', flat=True).distinct())
+    animes = Anime.objects.filter(id__in=ids)
+
+    Animesfilter = AnimeFilter(request.GET, queryset=animes)
+    animes = Animesfilter.qs
+    paginator = Paginator(animes, 20)
     page = request.GET.get('page')
     try:
-        animes = paginator.page(page)
+        response = paginator.page(page)
     except PageNotAnInteger:
-        animes = paginator.page(1)
+        response = paginator.page(1)
     except EmptyPage:
-        animes = paginator.page(paginator.num_pages)
+        response = paginator.page(paginator.num_pages)
 
-    return render(request, 'utama/directorio.html', {'generos': genres, 'animes': animes})
+    return render(request, 'utama/directorio.html', {'filter_form': Animesfilter, 'filter': response})
+
+# def directorio(request):
+#     animes = AnimeGenres.objects.all().distinct()
+#     for a in animes:
+#         print(a.anime.title)
+
+#     return render(request, 'utama/directorio.html', {'animes': animes.animes})
+
+# def broadcast(request):
+#     dayofyear =int(date.today().strftime('%j'))
+#     datediff = "(julianday('now') - julianday(%d) + 365)%365" % (dayofyear)
+#     print(datediff)
+#     # get all animes get all anime in En emisión
+#     animes = Anime.objects.filter(status__icontains='En emisión').extra(select={'datediff': datediff})
+#     for i in animes:
+#         episodes = Episode.objects.filter(anime_id=i.id).count()
+#         # add weeks to i.release according to how many chapters you have
+#         i.release = i.release + timedelta(weeks=episodes)
+
+#     animes.order_by('datediff')
+#     for i in animes:
+#         print(i.title , i.release)
+    
+#     return render(request, 'utama/broadcast.html', {'animes': animes})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def render_image(request, size,filename):
