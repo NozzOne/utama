@@ -21,12 +21,12 @@
     <link rel="stylesheet" href="{% static 'lib/others/border-animations.css' %}">
     <link rel="stylesheet" href="{% static 'utama/css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'lib/keen-slider.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.css">
     <link rel='shortcut icon' type='image/x-icon' href='{% static "favicon.ico" %}' />
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 </head>
-<body>
+<body >
+
     {% include 'utama/partials/_navbar.html' %}
     
     {% block content %}
@@ -34,15 +34,98 @@
 
     {% include 'utama/partials/_footer.html' %}
     <script src="{% static 'utama/js/nav.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.js"></script>
+
     <script>
-      var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.createTemplateTagFirstArg=function(a){return a.raw=a};$jscomp.createTemplateTagFirstArgWithRaw=function(a,b){a.raw=b;return a};$jscomp.arrayIteratorImpl=function(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}};$jscomp.arrayIterator=function(a){return{next:$jscomp.arrayIteratorImpl(a)}};$jscomp.makeIterator=function(a){var b="undefined"!=typeof Symbol&&Symbol.iterator&&a[Symbol.iterator];return b?b.call(a):$jscomp.arrayIterator(a)};
-$(document).ready(function(){$("#search").keyup(function(){var a=$(this).val().trim();0==a.length?$("#search-result").hide():($("#search-result").show(),getData(a))});$("#search").focusout(function(){setTimeout(function(){$("#search-result").hide()},100)});$("#search").focus(function(){$("#search-result").show()})});
-function getData(a){$.ajax({url:"{% url 'search' %}",headers:{"X-CSRFToken":"{{ csrf_token }}"},type:"POST",data:{search:a},success:function(b){var d="";b=$jscomp.makeIterator(b.persons);for(var c=b.next();!c.done;c=b.next()){c=c.value;console.log(c);var e="{% url 'cover' size='small' filename=12345 %}".replace(/12345/,c.image),f="{% url 'anime' id=12345 nombre=54321 %}".replace(/12345/,c.slug).replace(/54321/,c.title);d+="\n                  <a href="+f+' class="is-flex">\n                    <div class="column is-4-desktop is-2-mobile is-3-tablet">\n                        <figure class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center image" style="overflow: hidden;">\n                            <img class="is-flex-shrink-0" style="min-width: 100%; min-height: auto; max-height: 100%; object-fit: cover;" src="'+
-e+'" alt="Placeholder image">\n                        </figure>\n                    </div>\n                    <div class="column is-8-desktop is-8-mobile is-12-tablet is-flex is-flex-direction-column is-justify-content-center">\n                        <div class="is-flex is-flex-direction-column">\n                            <div class="is-flex">\n                                <p class="title is-size-5-desktop is-size-5-tablet is-size-5-mobile" style="color:var(--main-text-color-hover); font-family: Montserrat; font-weight: 400; font-style:normal;">\n                                    '+
-c.title+'\n                                </p>\n                            </div>\n                            \x3c!-- tipe --\x3e\n                            <div class="is-flex block">\n                                <p class="subtitle is-size-5-desktop is-size-6-tablet is-size-7-mobile" style="color:var(--main-primary-color); font-family: Montserrat; font-weight: 400; font-style:normal;">\n                                    <span>\n                                        '+c.tipo+'\n                                    </span>\n                                </p>\n                            </div>\n\n                        </div>\n                    </div>\n                    </a>\n                    <hr style="width: 100%;height:2px;border-width:0;background-color:var(--main-primary-color)">\n            '}$("#search-result").html(d)}})}
-;
-$(document).ready(function(){$.get("https://ipinfo.io",function(a){-1=="AR BO CL CO CR DO EC GT HN MX NI PA PE PR PY SV UY VE ES".split(" ").indexOf(a.country)&&(window.location.href="{% url 'notaccess' %}")},"jsonp")});
-   </script> 
+        
+      $(".btn-tag").click(function(){
+                $(".btn-tag-active").removeClass("btn-tag-active");
+                $(this).addClass("btn-tag-active");
+
+            });
+
+      </script>
+      <script src="https://unpkg.com/@popperjs/core@2"></script>
+      <script>
+        $(document).ready(function(){    
+          $('#search').keyup(function(){
+            const search = $(this).val().trim();
+            const flag = false;
+
+            if(search.length == 0){
+              $('#search-result').hide();
+              
+            }else{
+              $('#search-result').show();
+              getData(search);
+            }
+          });
+        $('#search').focusout(function(){
+          // set delay and hide
+          setTimeout(function(){
+            $('#search-result').hide();
+          }, 100);
+        
+        });
+        $('#search').focus(function(){
+          $('#search-result').show();
+        });
+    });
+    
+    
+    function getData(search)
+    {
+      $.ajax({
+        url: "{% url 'search' %}",
+        headers: {'X-CSRFToken': "{{ csrf_token }}"},
+        type: "POST",
+        data: {
+          search: search,
+        },
+        success: function(data)
+        {
+          let html = '';
+          for (const row of data.persons){
+            console.log(row);
+            var imagen = "{% url 'cover' size='small' filename=12345 %}".replace(/12345/, row.image);
+            var url = "{% url 'anime' id=12345 nombre=54321 %}".replace(/12345/, row.slug).replace(/54321/, row.title);
+            html += `
+                  <a href=${url} class="is-flex">
+                    <div class="column is-4-desktop is-2-mobile is-3-tablet">
+                        <figure class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center image" style="overflow: hidden;">
+                            <img class="is-flex-shrink-0" style="min-width: 100%; min-height: auto; max-height: 100%; object-fit: cover;" src="${imagen}" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="column is-8-desktop is-8-mobile is-12-tablet is-flex is-flex-direction-column is-justify-content-center">
+                        <div class="is-flex is-flex-direction-column">
+                            <div class="is-flex">
+                                <p class="title is-size-5-desktop is-size-5-tablet is-size-5-mobile" style="color:var(--main-text-color-hover); font-family: Montserrat; font-weight: 400; font-style:normal;">
+                                    ${row.title}
+                                </p>
+                            </div>
+                            <!-- tipe -->
+                            <div class="is-flex block">
+                                <p class="subtitle is-size-5-desktop is-size-6-tablet is-size-7-mobile" style="color:var(--main-primary-color); font-family: Montserrat; font-weight: 400; font-style:normal;">
+                                    <span>
+                                        ${row.tipo}
+                                    </span>
+                                </p>
+                            </div>
+    
+                        </div>
+                    </div>
+                    </a>
+                    <hr style="width: 100%;height:2px;border-width:0;background-color:var(--main-primary-color)">
+            `;
+          }
+          $('#search-result').html(html);
+        }
+      });
+    }
+
+
+    </script>
     
 </body>
 </html>

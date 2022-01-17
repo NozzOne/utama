@@ -5,8 +5,10 @@
 <title>Anime sin anuncios - Utama</title>
 
 {% include 'utama/partials/_slider.html' with populares=MostPopular %}
+<!-- LAST EPISODES -->
 <section class="section">
     <div class="container">
+        <!-- create title of section last anime episodes using bulma css-->
         <h1 class="subtitle is-4 has-text-left" style="color: var(--main-text-color-hover);">
             <span class="has-text-primary">
                 <i style="color:var(--main-primary-color);" class="fas fa-video"></i>
@@ -17,14 +19,14 @@
         <div class="columns is-multiline is-mobile">
             {% for capitulo in caps %}
                 <div class="column is-3-desktop is-half-tablet is-6-mobile">
-                    <a href="{% url 'ver' id=capitulo.id nombre=capitulo.anime.slug %}">
+                    <a href="{% url 'ver' id=capitulo.id nombre=capitulo.title %}">
                         <div class="ui-box topBottom-rightLeftCorner">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-5by3 zoom-out" >
-                                    <img class="dark-effect" src="{% url 'episode' size='medium' filename=capitulo.ThumbnailFilename  %}" alt="{{ capitulo.anime.title }}">
+                                    <img class="dark-effect" src="{% url 'episode' size='medium' filename=capitulo.ThumbnailFilename  %}" alt="Placeholder image">
                                 </figure>
                                 <div class="anime-info" style="width: 100%;">
-                                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 is-size-7-mobile n-text">{{ capitulo.anime.title }}</p>
+                                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 is-size-7-mobile n-text">{{ capitulo.title }}</p>
                                 </div>
                                 <div class="anime-ep">
                                     <span class="is-size-5 is-size-7-mobile">{{ capitulo.episode }}</span>
@@ -57,7 +59,7 @@
         <div class="columns is-multiline is-mobile">
             {% for serie in series %}
                 <div class="column is-3-desktop is-half-tablet is-4-mobile">
-                    <a href="{% url 'anime' id=serie.id nombre=serie.slug %}">
+                    <a href="{% url 'anime' id=serie.id nombre=serie.title%}">
                         <div class="ui-box left-stay">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-2by3 zoom-out" >

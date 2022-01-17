@@ -6,16 +6,13 @@ name = "pypi"
 [packages]
 django = "*"
 pillow = "*"
+djangorestframework = "*"
+elasticsearch = "~=6.0"
+elasticsearch-dsl = "~=6.0"
+django-elasticsearch-dsl = "~=6.0"
+django-elasticsearch-dsl-drf = "*"
 django-admin-honeypot = {git = "https://github.com/dmpayton/django-admin-honeypot"}
 django-smart-selects = {git = "https://github.com/jazzband/django-smart-selects"}
-django-import-export = "*"
-django-jet = "*"
-django-filter = "*"
-django-csp = "*"
-django-robots = "*"
-django-autoslug = {git = "https://github.com/justinmayer/django-autoslug"}
-django-cleanup = "*"
-django-unused-media = "*"
 
 [dev-packages]
 

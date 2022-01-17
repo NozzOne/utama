@@ -6,108 +6,173 @@
 
 
 <section class="section">
-
-    <h1 class="subtitle is-3 has-text-centered" style="color: var(--main-primary-color); font-family: Montserrat; font-style: italic;">
-        Lista de animes
-    </h1>
-
     <div class="container">
-        <form>
-        <div class="columns is-multiline is-mobile is-centered">
-            <div class="column is-3-desktop is-3-mobile is-3-tablet">
-                <div class="tags-container-item-title">
-                    <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
-                        Orden
-                    </h1>
-                </div>
-                <div class="select-wrapper">
-                   {{filter_form.form.ordering}}
-                </div>
-            </div>
-            <div class="column is-3-desktop is-3-mobile">
-                <div class="tags-container-item-title">
-                    <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
-                        Estado
-                    </h1>
-                </div>
-                <div class="select-wrapper is-fullwidth select-estado-container">
-                    {{filter_form.form.status}}
-                </div>
-            </div>
-            <div class="column is-3-desktop is-3-mobile">
-                <div class="tags-container-item-title">
-                    <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
-                        Tipo
-                    </h1>
-                </div>
-                <div class="select-wrapper is-fullwidth">
-                    {{filter_form.form.tipo}}
-                </div>
-            </div>
-            <div class="column is-3-desktop is-3-mobile">
-                <div class="tags-container block">
-                    <div class="tags-container-item">
-                        <div class="tags-container-item-title">
-                            <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
-                                Generos
-                            </h1>
-                        </div>
-                        <div class="tags-container-item-content">
-                            <div class="tags-container-item-content-item is-5 has-text-justify" style="text-align: justify;">
-                                {{filter_form.form.genres}}
-                            </div>
-                        </div>
+        <!-- center title  -->
+        <h1 class="subtitle is-3 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
+            Lista de animes
+        </h1>
+        <!-- end center title  -->
+        <div class="container">
+            <!-- select estado -->
+            <div class="columns is-multiline is-mobile">
+                <!-- Tipo -->
+                <!-- Orden -->
+                <div class="column is-3-desktop is-3-mobile is-3-tablet">
+                    <div class="tags-container-item-title">
+                        <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
+                            Orden
+                        </h1>
+                    </div>
+                    <div class="select-wrapper">
+                        <select class="select-style" name="orden" id="orden">
+                            <option value="0">Orden</option>
+                            <option value="1">Alfabético</option>
+                            <option value="2">Popularidad</option>
+                        </select>
                     </div>
                 </div>
-
-            </div>
-            <div class="column is-3-desktop is-3-mobile">
-                <div class="select-wrapper is-fullwidth">
-                    <button class="btn-search" style="border-radius: 5px; color: var(--main-text-color-hover); width: 100%;">
-                        Filtrar
-                    </button>
+                <div class="column is-3-desktop is-3-mobile">
+                    <div class="tags-container-item-title">
+                        <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
+                            Estado
+                        </h1>
+                    </div>
+                    <div class="select-wrapper is-fullwidth select-estado-container">
+                        <select id="select-estado" class="select-style">
+                            <option value="0">Todos los estados</option>
+                            <option value="1">En Emisióm</option>
+                            <option value="2">Finalizados</option>
+                        </select>
+                    </div>
                 </div>
+                <!-- end select estado -->
+                <!-- select genero -->
+                <div class="column is-3-desktop is-3-mobile">
+                    <div class="tags-container-item-title">
+                        <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
+                            Letra
+                        </h1>
+                    </div>
+                    <div class="select-wrapper is-fullwidth">
+                        <select class="select-style" id="select-letra">
+                            <option value="0">Todas</option>
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="4">D</option>
+                            <option value="5">E</option>
+                            <option value="6">F</option>
+                            <option value="7">G</option>
+                            <option value="8">H</option>
+                            <option value="9">I</option>
+                            <option value="10">J</option>
+                            <option value="11">K</option>
+                            <option value="12">L</option>
+                            <option value="13">M</option>
+                            <option value="14">N</option>
+                            <option value="15">O</option>
+                            <option value="16">P</option>
+                            <option value="17">Q</option>
+                            <option value="18">R</option>
+                            <option value="19">S</option>
+                            <option value="20">T</option>
+                            <option value="21">U</option>
+                            <option value="22">V</option>
+                            <option value="23">W</option>
+                            <option value="24">X</option>
+                            <option value="25">Y</option>
+                            <option value="26">Z</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- end select genero -->
+                <!-- tipo -->
+                <div class="column is-3-desktop is-3-mobile">
+                    <div class="tags-container-item-title">
+                        <h1 class="subtitle is-5 has-text-centered" style="color: var(--main-text-color-hover); font-family: montserrat;">
+                            Tipo
+                        </h1>
+                    </div>
+                    <div class="select-wrapper is-fullwidth">
+                        <select class="select-style" id="select-tipo">
+                            <option value="0">Todos</option>
+                            <option value="1">Anime</option>
+                            <option value="2">OVA</option>
+                            <option value="3">ONA</option>
+                            <option value="4">Manga</option>
+                            <option value="5">Película</option>
+                            <option value="6">Otros</option>
+                        </select>
+                    </div>
+
+                
+
             </div>  
+
+
+        <!-- position anime genres-->
+        <div class="tags-container">
+            <div class="tags-container-item">
+                <div class="tags-container-item-title">
+                    <h1 class="subtitle is-5 has-text-left" style="color: var(--main-text-color-hover); font-family: montserrat;">
+                        Generos
+                    </h1>
+                </div>
+                <div class="tags-container-item-content">
+                    <div class="tags-container-item-content-item is-5" style="text-align: justify;">
+                        {% for genero in generos %}
+                            <a id="HOLA" class="is-size-6 mx-2 my-2 btn-tag" >{{genero.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- end position anime genres-->
         <div class="container">
-            <div id="anime-container" class="columns is-multiline is-mobile">
-                {% for anime in filter %}
-                <div class="column is-2-desktop is-half-tablet is-4-mobile">
-                    <a href="{% url 'anime' id=anime.id nombre=anime.slug %}">
-                        <div class="ui-box left-stay">
-                            <div class="ui-border-element a-container">
-                                <figure class="image is-2by3 zoom-out" >
-                                    <img class="dark-effect" src="{% url 'cover' size='medium' filename=anime.coverFilename %}" alt="{{ anime.title }}">
-                                </figure>
-                                <div class="anime-info has-text-centered">
-                                    <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{ anime.title}}</p>
+            <div class="columns is-multiline is-mobile">
+                {% for serie in animes %}
+                    <div class="column is-2-desktop is-half-tablet is-4-mobile">
+                        <a href="{% url 'anime' id=serie.id nombre=serie.title %}">
+                            <div class="ui-box left-stay">
+                                <div class="ui-border-element a-container">
+                                    <figure class="image is-2by3 zoom-out" >
+                                        <img class="dark-effect" src="{% url 'cover' size='medium' filename=serie.coverFilename %}" alt="Placeholder image">
+                                    </figure>
+                                    <div class="anime-info has-text-centered">
+                                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{serie.title}}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>
     </div>
-    <div class="container is-centered my-2">
-        <div class="columns is-mobile is-centered">
-            <div class="column is-10-tablet is-10-mobile is-10-desktop has-text-centered">
-                {% if filter.has_previous %}
-                <a href="?page={{ filter.previous_page_number }}" class="btn-search" style="border-radius: 5px; color: var(--main-text-color-hover);">Anterior</a>
-                
-                {% endif %}
-                <span class="current" style="color: var(--main-text-color-hover);">
-                    Pagina {{ filter.number }} de {{ filter.paginator.num_pages }}
-                </span>
-                {% if filter.has_next %}
-                <a href="?page={{ filter.next_page_number }}"class="btn-search" style="border-radius: 5px; color: var(--main-text-color-hover);">Siguiente</a>
-                {% endif %}
-                </span>
-            </div>
-        </div>
+    <div class="container is-half">
+        <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+            <ul class="pagination-list">
+            {% if animes.has_previous  %}
+                <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                <li><a class="pagination-link" aria-label="Goto page 45">{{ animes.previous_page_number}}</a></li>
+            {% endif %}
+
+
+            <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">{{ animes.number}}</a></li>
+
+            {% if animes.has_next %}
+                <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+            {% endif %}
+        </ul></nav>
     </div>
+</div>
+
+        
 
 </section>
+
 {% endblock content %}

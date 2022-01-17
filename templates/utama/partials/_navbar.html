@@ -1,4 +1,4 @@
-
+<!-- Create a navbar not use bulma css -->
 <div class="container is-max-desktop" style="margin-top: 10px;">
     <nav class="navbar is-transparent is-active" style="background-color: var(--main-bg-color);">
         <div class="navbar-brand is-3">
@@ -19,12 +19,12 @@
                     </span>
                     <span class="is-size-6 ui-border-element" style="font-style:normal; font-weight:400; padding: 3px; font-family: Montserrat; font-style: normal; color: var(--main-text-color-hover);">Directorio</span>
                 </a>
-                <!-- <a class="navbar-item ui-box bottom-inOutSpread is-max-width-mobile is-size-4-mobile" href="">
+                <a class="navbar-item ui-box bottom-inOutSpread is-max-width-mobile is-size-4-mobile" href="{% url 'home' %}">
                     <span>
                         <i  style="color:var(--main-primary-color);" class="fas fa-calendar-week"></i>
                     </span>
                     <span class="is-size-6 ui-border-element" style="font-style:normal; font-weight:400; padding: 3px; font-family: Montserrat; font-style: normal; color: var(--main-text-color-hover);">Calendario</span>
-                </a> -->
+                </a>
                 <a class="navbar-item ui-box bottom-inOutSpread is-max-width-mobile is-size-4-mobile" href="{% url 'random' %}">
                     <span>
                         <i style="color:var(--main-primary-color);" class="fas fa-random"></i>
@@ -45,10 +45,13 @@
                             </button>
                         </div>
                         <div class="columns is-multiline my-2" id="search-result" role="search-result">
+                            
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
+        <!-- search result -->
 </div>

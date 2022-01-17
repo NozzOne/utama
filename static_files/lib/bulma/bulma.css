@@ -8453,9 +8453,6 @@ label.panel-block:hover {
   .columns.is-variable.is-2-mobile {
     --columnGap: 0.5rem;
   }
-  #search-result{
-    position: relative;
-  }
 }
 
 @media screen and (min-width: 769px), print {
