@@ -446,23 +446,41 @@ html{
 #search-result{
     position: absolute; visibility: visible; background-color: var(--main-bg-color); border-radius: 10px; 
 }
-
-.broadcast-info{
-    position: relative;
-    width: 100%;
-    height: 100%;
+#search-result:hover{
     background-color: var(--main-bg-color);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
+.bg-container{
+    border-radius: 5px;
+    overflow: hidden;
+}
+.broad-info{
+    /* position overlay of bg-container */
+    position:absolute;
+    /* top middle */
+    top: 10%;
+
+    left:2%;
+    right:0;
+    bottom:0;
+    width: 80%;
+    height: 80%;
+    background-color: rgb(27, 27, 27);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+
+}
+
+.moment{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--main-text-color);
+    margin-bottom: 0.5rem;
+    font-family: montserrat;
+    text-align: center;
+    width: 100%;
+}
+
 /* set results position relative in mobile */
 @media screen and (max-width: 600px) {
     #search-result{

@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NEBX0LSCY"></script>
     <script>
@@ -24,6 +23,8 @@
     <link rel="stylesheet" href="{% static 'lib/keen-slider.css' %}">
     <link rel='shortcut icon' type='image/x-icon' href='{% static "favicon.ico" %}' />
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>$(document).ready(function(){$.get("https://ipinfo.io",function(a){-1=="AR BO CL CO CR DO EC GT HN MX NI PA PE PR PY SV UY VE ES".split(" ").indexOf(a.country)&&(window.location.href="{% url 'notaccess' %}")},"jsonp")});</script>
+    
 
 </head>
 <body>
@@ -37,12 +38,30 @@
     <script>
       var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.createTemplateTagFirstArg=function(a){return a.raw=a};$jscomp.createTemplateTagFirstArgWithRaw=function(a,b){a.raw=b;return a};$jscomp.arrayIteratorImpl=function(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}};$jscomp.arrayIterator=function(a){return{next:$jscomp.arrayIteratorImpl(a)}};$jscomp.makeIterator=function(a){var b="undefined"!=typeof Symbol&&Symbol.iterator&&a[Symbol.iterator];return b?b.call(a):$jscomp.arrayIterator(a)};
 $(document).ready(function(){$("#search").keyup(function(){var a=$(this).val().trim();0==a.length?$("#search-result").hide():($("#search-result").show(),getData(a))});$("#search").focusout(function(){setTimeout(function(){$("#search-result").hide()},100)});$("#search").focus(function(){$("#search-result").show()})});
-function getData(a){$.ajax({url:"{% url 'search' %}",headers:{"X-CSRFToken":"{{ csrf_token }}"},type:"POST",data:{search:a},success:function(b){var d="";b=$jscomp.makeIterator(b.persons);for(var c=b.next();!c.done;c=b.next()){c=c.value;console.log(c);var e="{% url 'cover' size='small' filename=12345 %}".replace(/12345/,c.image),f="{% url 'anime' id=12345 nombre=54321 %}".replace(/12345/,c.slug).replace(/54321/,c.title);d+="\n                  <a href="+f+' class="is-flex">\n                    <div class="column is-4-desktop is-2-mobile is-3-tablet">\n                        <figure class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center image" style="overflow: hidden;">\n                            <img class="is-flex-shrink-0" style="min-width: 100%; min-height: auto; max-height: 100%; object-fit: cover;" src="'+
+function getData(a){$.ajax({url:"{% url 'search' %}",headers:{"X-CSRFToken":"{{ csrf_token }}"},type:"POST",data:{search:a},success:function(b){var d="";b=$jscomp.makeIterator(b.persons);for(var c=b.next();!c.done;c=b.next()){c=c.value;console.log(c);var e="{% url 'cover' size='small' filename=12345 %}".replace(/12345/,c.image),f="{% url 'anime' id=12345 nombre=54321 %}".replace(/12345/,c.slug).replace(/54321/,c.title);d+="\n                  <a href="+f+' class="is-flex">\n                    <div class="column is-4-desktop is-2-mobile is-3-tablet">\n                        <figure class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center image" style="overflow: hidden;">\n                            <img loading="lazy" class="is-flex-shrink-0 lazyload" style="min-width: 100%; min-height: auto; max-height: 100%; object-fit: cover;"  data-src="'+
 e+'" alt="Placeholder image">\n                        </figure>\n                    </div>\n                    <div class="column is-8-desktop is-8-mobile is-12-tablet is-flex is-flex-direction-column is-justify-content-center">\n                        <div class="is-flex is-flex-direction-column">\n                            <div class="is-flex">\n                                <p class="title is-size-5-desktop is-size-5-tablet is-size-5-mobile" style="color:var(--main-text-color-hover); font-family: Montserrat; font-weight: 400; font-style:normal;">\n                                    '+
 c.title+'\n                                </p>\n                            </div>\n                            \x3c!-- tipe --\x3e\n                            <div class="is-flex block">\n                                <p class="subtitle is-size-5-desktop is-size-6-tablet is-size-7-mobile" style="color:var(--main-primary-color); font-family: Montserrat; font-weight: 400; font-style:normal;">\n                                    <span>\n                                        '+c.tipo+'\n                                    </span>\n                                </p>\n                            </div>\n\n                        </div>\n                    </div>\n                    </a>\n                    <hr style="width: 100%;height:2px;border-width:0;background-color:var(--main-primary-color)">\n            '}$("#search-result").html(d)}})}
 ;
-$(document).ready(function(){$.get("https://ipinfo.io",function(a){-1=="AR BO CL CO CR DO EC GT HN MX NI PA PE PR PY SV UY VE ES".split(" ").indexOf(a.country)&&(window.location.href="{% url 'notaccess' %}")},"jsonp")});
    </script> 
-    
+
+  <script>
+    $(document).ready(function(){
+      if ("loading" in HTMLImageElement.prototype) {
+      // Si el navegador soporta lazy-load, tomamos todas las imágenes que tienen la clase
+      // `lazyload`, obtenemos el valor de su atributo `data-src` y lo inyectamos en el `src`.
+      const images = document.querySelectorAll("img.lazyload");
+      images.forEach((img) => {
+        img.src = img.dataset.src;
+      });
+    } else {
+      // Importamos dinámicamente la libreria `lazysizes`
+      let script = document.createElement("script");
+      script.async = true;
+      script.src =
+        "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.0/lazysizes.min.js";
+      document.body.appendChild(script);
+    }
+    });
+  </script>
 </body>
 </html>

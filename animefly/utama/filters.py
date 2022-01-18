@@ -27,10 +27,10 @@ class AnimeFilter(django_filters.FilterSet):
 
     GENRE_CHOICES = [(genre.id, genre.name) for genre in Genres.objects.all()]
 
-    ordering = django_filters.ChoiceFilter(label='Orden', choices=CHOICES, method='filter_by_ordering', empty_label='NINGUNO', widget=Select(attrs={'class':'select-style'}))
-    status = django_filters.ChoiceFilter(label='Status', choices=STATUS_CHOICES, method='filter_by_status', empty_label='TODOS LOS ESTADOS', widget=Select(attrs={'class':'select-style'}))
-    genres = django_filters.ChoiceFilter(label='Genero', choices=GENRE_CHOICES, method='filter_by_genre', empty_label='TODOS', widget=Select(attrs={'class':'select-style'}))
-    tipo = django_filters.ChoiceFilter(label='Tipo', choices=TIPO_CHOICES, method='filter_by_tipo', empty_label='TODOS LOS TIPOS', widget=Select(attrs={'class':'select-style'}))
+    ordering = django_filters.ChoiceFilter(label='Orden', choices=CHOICES, method='filter_by_ordering', empty_label='NINGUNO', widget=Select(attrs={'class':'select-style', 'onchange':'this.form.submit()'}))
+    status = django_filters.ChoiceFilter(label='Status', choices=STATUS_CHOICES, method='filter_by_status', empty_label='TODOS LOS ESTADOS', widget=Select(attrs={'class':'select-style', 'onchange':'this.form.submit()'}))
+    genres = django_filters.ChoiceFilter(label='Genero', choices=GENRE_CHOICES, method='filter_by_genre', empty_label='TODOS', widget=Select(attrs={'class':'select-style', 'onchange':'this.form.submit()'}))
+    tipo = django_filters.ChoiceFilter(label='Tipo', choices=TIPO_CHOICES, method='filter_by_tipo', empty_label='TODOS LOS TIPOS', widget=Select(attrs={'class':'select-style', 'onchange':'this.form.submit()'}))
 
     class Meta:
         model = Anime

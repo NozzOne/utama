@@ -21,7 +21,7 @@
                         <div class="ui-box topBottom-rightLeftCorner">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-5by3 zoom-out" >
-                                    <img class="dark-effect" src="{% url 'episode' size='medium' filename=capitulo.ThumbnailFilename  %}" alt="{{ capitulo.anime.title }}">
+                                    <img loading="lazy" class="dark-effect lazyload" data-src="{% url 'episode' size='medium' filename=capitulo.ThumbnailFilename  %}" alt="{{ capitulo.anime.title }}">
                                 </figure>
                                 <div class="anime-info" style="width: 100%;">
                                     <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 is-size-7-mobile n-text">{{ capitulo.anime.title }}</p>
@@ -61,7 +61,7 @@
                         <div class="ui-box left-stay">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-2by3 zoom-out" >
-                                    <img class="dark-effect" src="{% url 'cover' size='medium' filename=serie.coverFilename %}" alt="Placeholder image">
+                                    <img loading="lazy" class="dark-effect lazyload" data-src="{% url 'cover' size='medium' filename=serie.coverFilename %}" alt="Placeholder image">
                                 </figure>
                                 <div class="anime-info has-text-centered">
                                     <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 is-size-7-mobile n-text">{{serie.title}}</p>

@@ -61,13 +61,6 @@
                 </div>
 
             </div>
-            <div class="column is-3-desktop is-3-mobile">
-                <div class="select-wrapper is-fullwidth">
-                    <button class="btn-search" style="border-radius: 5px; color: var(--main-text-color-hover); width: 100%;">
-                        Filtrar
-                    </button>
-                </div>
-            </div>  
         </div>
 
         <div class="container">
@@ -78,7 +71,7 @@
                         <div class="ui-box left-stay">
                             <div class="ui-border-element a-container">
                                 <figure class="image is-2by3 zoom-out" >
-                                    <img class="dark-effect" src="{% url 'cover' size='medium' filename=anime.coverFilename %}" alt="{{ anime.title }}">
+                                    <img loading="lazy" class="dark-effect lazyload" data-src="{% url 'cover' size='medium' filename=anime.coverFilename %}" alt="{{ anime.title }}">
                                 </figure>
                                 <div class="anime-info has-text-centered">
                                     <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 1px #000;" class="is-size-5 n-text">{{ anime.title}}</p>

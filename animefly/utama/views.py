@@ -2,14 +2,14 @@ from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.http import FileResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q, Value, CharField
+from django.db.models import Q
 
 from .models import Anime, Genres, AnimeGenres,  Episode, AnimeEpisode
 from .filters import AnimeFilter
 
 from PIL import Image
 from io import BytesIO
-from datetime import timedelta, date
+import datetime
 
 
 
@@ -111,29 +111,17 @@ def directorio(request):
 
     return render(request, 'utama/directorio.html', {'filter_form': Animesfilter, 'filter': response})
 
-# def directorio(request):
-#     animes = AnimeGenres.objects.all().distinct()
-#     for a in animes:
-#         print(a.anime.title)
+def broadcast(request):
+    animes = Anime.objects.filter(status='En Emisión')
 
-#     return render(request, 'utama/directorio.html', {'animes': animes.animes})
+    for i in animes:
+        # counts episodes 
+        episodes = Episode.objects.filter(anime_id=i.id).count()
+        i.release = i.release + datetime.timedelta(weeks=episodes)
 
-# def broadcast(request):
-#     dayofyear =int(date.today().strftime('%j'))
-#     datediff = "(julianday('now') - julianday(%d) + 365)%365" % (dayofyear)
-#     print(datediff)
-#     # get all animes get all anime in En emisión
-#     animes = Anime.objects.filter(status__icontains='En emisión').extra(select={'datediff': datediff})
-#     for i in animes:
-#         episodes = Episode.objects.filter(anime_id=i.id).count()
-#         # add weeks to i.release according to how many chapters you have
-#         i.release = i.release + timedelta(weeks=episodes)
 
-#     animes.order_by('datediff')
-#     for i in animes:
-#         print(i.title , i.release)
-    
-#     return render(request, 'utama/broadcast.html', {'animes': animes})
+
+    return render(request, 'utama/broadcast.html', {'animes': animes})
 
 
 

@@ -7,32 +7,105 @@
 
 <!-- next anime broadcast -->
 <section class="section">
-    <div class="columns is-mobile is-centered">
-        <div class="column is-5">
-            <div class="container">
-                <h1 class="title has-text-centered" style="color: var(--main-primary-color); font-family: Montserrat; font-style: italic;">Proximo Estreno</h1>
-                <div class="broadcast-info" style="background-image: url({% url 'background' size='medium' filename=animes.0.backgroundFilename %});">
-                    <div class="broadcast-info-content">
-                        <div class="broadcast-info-content-title">
-                            <h1 class="title is-4">{{ animes.0.title }}</h1>
+    <div class="columns is-mobile is-centered is-multiline">
+        
+    {% for anime in animes %}
+        <div class="column is-4-desktop is-6-tablet is-12-mobile">
+            <div class="container is-flex-direction-row">
+                <div class="bg-container">
+                    <figure class="image is-3by1">
+                        <img src="{% url 'background' size='medium' filename=anime.backgroundFilename %}" alt="{{ anime.title }}" style="object-fit: cover; object-position: center;">
+                    </figure>
+                </div>
+                <div class="broad-info is-flex is-flex-direction-row is-justify-content-center" style="align-items: center;">
+                    <div class="is-flex is-flex-direction-column">
+                        <figure class="image is-2by3" >
+                            <img loading="lazy" class="lazyload" data-src="{% url 'cover' size='medium' filename=anime.coverFilename %}" alt="{{ anime.title }}">
+                        </figure>
+                    </div>
+                    <div class="is-flex is-flex-direction-column has-text-centered">
+                        <div class="info-container" style="width: 100%;">
+                            <h1 class="title is-size-4 is-size-5-tablet is-size-6-mobile block" style="color: var(--main-text-color); font-family: montserrat;">{{anime.title}}</h1>
+                            <h5 class="subtitle is-size-7 is-size-7-mobile"  style="color: var(--main-primary-color);font-family: montserrat;">Proximo capitulo: {{anime.release}} (UTC)</h5>
                         </div>
-                        <div class="">
-                            
+                        <div class="is-flex is-flex-direction-row has-text-right">
+                            <div class="is-flex info-container" style="width: 100%;">
+                                <h1 class="title moment is-size-3-desktop is-size-5-tablet is-size-5-mobile" id="moment" data-date="{{anime.release|date:'d-m-Y H:i:s'}}">{{anime.release|date:"d-m-Y H:i:s"}}</h1>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div>  
             </div>
         </div>
+    {% endfor %}
+                
+
     </div>
 </section>
 
-<!-- emision de la semanal -->
-<section class="section">
-    
-</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+        $(document).ready(function(){
+            $('.moment').each(function(){
+                let now = moment();
+                let expire = moment($(this).text(), "DD-MM-YYYY HH:mm:ss");
+                let diff = expire.diff(now);
+                let diffDuration = moment.duration(diff);
+                let days = diffDuration.days();
+                let hours = diffDuration.hours();
+                let minutes = diffDuration.minutes();
+                let seconds = diffDuration.seconds();
+
+                $(this).text(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+
+            });
+            setInterval(function(){
+                $('.moment').each(function(){
+                    let now = moment();
+                    let expire = moment($(this).data('date'), "DD-MM-YYYY HH:mm:ss");
+                    let diff = expire.diff(now);
+                    let diffDuration = moment.duration(diff);
+                    let days = diffDuration.days();
+                    let hours = diffDuration.hours();
+                    let minutes = diffDuration.minutes();
+                    let seconds = diffDuration.seconds();
+
+                    $(this).text(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+
+                });
+            }, 1000);
 
 
 
+            // const now = moment();
+            // const expire = moment('{{animes.5.release|date:"d-m-Y H:i:s"}}', 'DD-MM-YYYY HH:mm:ss');
+            // const diff = expire.diff(now);
+            // const diffDuration = moment.duration(diff);
+            
+
+            // const days = diffDuration.days();
+            // const hours = diffDuration.hours();
+            // const minutes = diffDuration.minutes();
+            // const seconds = diffDuration.seconds();
+
+            // $('#moment').text(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+
+            // setInterval(function(){
+            //     const now = moment();
+            //     const expire = moment('{{animes.5.release|date:"d-m-Y H:i:s"}}', 'DD-MM-YYYY HH:mm:ss');
+            //     const diff = expire.diff(now);
+            //     const diffDuration = moment.duration(diff);
+
+            //     const days = diffDuration.days();
+            //     const hours = diffDuration.hours();
+            //     const minutes = diffDuration.minutes();
+            //     const seconds = diffDuration.seconds();
+
+            //     $('#moment').text(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+            // }, 1000);
+        });
+</script>
 
 {% endblock content %}
 

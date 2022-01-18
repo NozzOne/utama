@@ -39,7 +39,7 @@ urlpatterns = [
     path('directorio', views.directorio, name="directorio"),
     path('random', views.random, name="random"),
     path('notaccess', views.notaccess, name="notaccess"),
-    # path('broadcast', views.broadcast, name="broadcast"),
+    path('broadcast', views.broadcast, name="broadcast"),
 
     # datas
     path('search', views.getdata, name="search"),
