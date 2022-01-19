@@ -1,5 +1,6 @@
 {% extends 'utama/layout.html' %}
 {% block title %}{{episode.anime.title}} Episodio {{episode.episode}} Sub Español - Utama{% endblock %}
+{% block title2 %}{{episode.anime.title}} Episodio {{episode.episode}} Sub Español - Utama{% endblock %}
 {% block description %}{{episode.anime.description}}{% endblock %}
 {% block url %}https://utama.live/ver/{{episode.id}}/{{episode.anime.slug}}{% endblock %}
 {% block image %}https://utama.live{% url 'episode' size='medium' filename=episode.ThumbnailFilename %}{% endblock %}

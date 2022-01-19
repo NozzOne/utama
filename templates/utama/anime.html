@@ -1,16 +1,15 @@
 {% extends 'utama/layout.html' %}
 
 {% block title %}Ver {{anime.title}} Online{% endblock%}
+{% block title2 %}Ver {{anime.title}} Online{% endblock%}
 {% block description %}{{anime.description}}{% endblock%}
 {% block url %}https://utama.live{% endblock%}
 {% block image %} https://utama.live{% url 'cover' size='medium' filename=anime.coverFilename %} {% endblock%}
-{% block content %}
 
+
+{% block content %}
 
 {% include 'utama/partials/_slider.html' with populares=MostPopular %}
-
-{% endblock %}
-{% block content %}
 <section class="section">
     <div class="container">
         <div class="columns is-multiline is-mobile is-justify-content-center" style="justify-content: center;">
