@@ -17,12 +17,11 @@ import ipinfo
 
 def ckct(old_function):
     def new_function(request):
-        availablect = ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]
         ct = request.ipinfo.country
-        if ct in availablect:
+        if ct in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
             return old_function(request)
-        else:
-            return redirect('/notaccess')
+        elif ct not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
+            return redirect('notaccess')
 
     return new_function
 
