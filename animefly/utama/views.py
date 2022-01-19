@@ -18,14 +18,12 @@ import ipinfo
 def ckct(old_function):
     def new_function(request):
         availablect = ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]
-        try:
-            ct = request.ipinfo.country
-            if ct in availablect:
-                return old_function(request)
-            else:
-                return redirect('/notaccess')
-        except:
+        ct = request.ipinfo.country
+        if ct in availablect:
+            return old_function(request)
+        else:
             return redirect('/notaccess')
+
     return new_function
 
 # Create your views here.
