@@ -1,32 +1,49 @@
+import re
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.http import FileResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
-from .models import Anime, Genres, AnimeGenres,  Episode, AnimeEpisode
+from .models import Anime, AnimeGenres,  Episode, AnimeEpisode
 from .filters import AnimeFilter
 
 from PIL import Image
 from io import BytesIO
+
 import datetime
+import ipinfo
 
 
+def ckct(old_function):
+    def new_function(request):
+        availablect = ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]
+        try:
+            ct = request.ipinfo.country
+            if ct in availablect:
+                return old_function(request)
+            else:
+                return redirect('/notaccess')
+        except:
+            return redirect('/notaccess')
+    return new_function
 
 # Create your views here.
+@ckct
 def home(request):
     MostPopular = Anime.objects.filter(rating__gte=8)[:5]
     episodios = Episode.objects.filter(is_premiere=1).order_by('-id')[0:12]
     Last_animes = Anime.objects.all().order_by('-id')[0:12]
     return render(request, 'utama/home.html', {'MostPopular': MostPopular, 'caps': episodios, 'series': Last_animes})
 
+@ckct
 def anime(request, id, nombre=None):
     anime = Anime.objects.get(id=id)
     episodios = Episode.objects.filter(anime_id=id).order_by('-id')
     count_episodes = Episode.objects.filter(anime_id=id).count()
     return render(request, 'utama/anime.html', {'anime': anime, 'capitulos': episodios, 'count': count_episodes})
 
-
+@ckct
 def ver(request, id, nombre=None):
     episode = Episode.objects.get(id=id)
     anime_episode = AnimeEpisode.objects.filter(episode_id=id).order_by('server')
@@ -37,7 +54,7 @@ def ver(request, id, nombre=None):
 
 def notaccess(request):
     return render(request, 'utama/notaccess.html', {})
-
+@ckct
 def random(request):
     anime = Anime.objects.order_by('?').first()
     return redirect('/anime/'+str(anime.id)+'/'+anime.title)
@@ -92,6 +109,7 @@ def getfilter(request):
         )
     return JsonResponse({'animelist': animelist})
 
+@ckct
 def directorio(request):
 
 
@@ -111,6 +129,7 @@ def directorio(request):
 
     return render(request, 'utama/directorio.html', {'filter_form': Animesfilter, 'filter': response})
 
+@ckct
 def broadcast(request):
     animes = Anime.objects.filter(status='En Emisión')
 
@@ -122,24 +141,6 @@ def broadcast(request):
 
 
     return render(request, 'utama/broadcast.html', {'animes': animes})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def render_image(request, size,filename):
     small = (200,200)

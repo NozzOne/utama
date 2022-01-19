@@ -16,6 +16,7 @@ django-robots = "*"
 django-autoslug = {git = "https://github.com/justinmayer/django-autoslug"}
 django-cleanup = "*"
 django-unused-media = "*"
+ipinfo-django = "*"
 
 [dev-packages]
 
