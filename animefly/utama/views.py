@@ -1,3 +1,4 @@
+from os import stat
 import re
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
@@ -18,14 +19,17 @@ import requests
 
 
 def ckct(old_function):
-    def new_function(request):
-        country = request.META.get('HTTP_CF_IPCOUNTRY') 
+    def new_function(request, id=None, nombre=None):
+        # country = request.META.get('HTTP_CF_IPCOUNTRY') 
 
-        print(country)
-        if country not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
-            return redirect('notaccess')
-        else:
-            return old_function(request)
+        # print(country)
+        # if country not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
+        #     return redirect('notaccess')
+        # else:
+            if id and nombre:
+                return old_function(request, id, nombre)
+            else:
+                return old_function(request)
 
     return new_function
 
@@ -256,12 +260,14 @@ def episode_image(request, size,filename):
     img_io.seek(0)
     return FileResponse(img_io, content_type='image/webp')
 
+
+
 def error_500(request, exception=None):
-    return render(request, 'utama/500.html', {})
+    return redirect('home')
 
 def error_404(request, exception):
-    return render(request, 'utama/404.html', {})
+    return render(request, template_name='utama/404.html', status=404)
 
 def error_403(request, exception=None):
-    return render(request, 'utama/403.html', {})
+    return render(request, 'utama/403.html', status=403)
 

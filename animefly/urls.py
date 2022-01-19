@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from .utama import views
 
-admin.autodiscover()
 
 handler500 = "animefly.utama.views.error_500"
 handler404 = "animefly.utama.views.error_404"

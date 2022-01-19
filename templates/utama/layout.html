@@ -23,17 +23,19 @@
     <link rel='shortcut icon' type='image/x-icon' href='{% static "favicon.ico" %}' />
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
-
+    <!-- title block -->
+    <title>{% block title %}{% endblock %}</title>
 </head>
 
 <header>
-  <div id="loading" class="container is-fullhd">
+  <div id="loading" class="container is-fullhd noselect">
     <div class="columns is-mobile is-centered">
-      <div class="column is-fullhd noselect">
+      <div class="column is-fullhd ">
         <a class="navbar-item ui-box bottom-stay is-gap-2">
           <span class="is-size-3 ui-border-element" style="font-style:italic; font-weight:900; text-transform: uppercase; font-family: Montserrat; color: var(--main-text-color-hover);">Utama</span>
         </a>
-        <!-- cargando -->
+        <!-- cargando text -->
+        <p style="text-align: center; font-weight:600; font-family: Montserrat; color: var(--main-text-color);">Cargando...</p>
 
       </div>
     </div>

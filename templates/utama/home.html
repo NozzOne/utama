@@ -1,10 +1,9 @@
 {% extends 'utama/layout.html' %}
-    
+
+{% block title %} Utama - Tus animes Favoritos Sin tantos anuncios{% endblock %}
 {% block content %}
-
-<title>Anime sin anuncios - Utama</title>
-
 {% include 'utama/partials/_slider.html' with populares=MostPopular %}
+
 <section class="section">
     <div class="container">
         <h1 class="subtitle is-4 has-text-left" style="color: var(--main-text-color-hover);">
