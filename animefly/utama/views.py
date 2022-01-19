@@ -62,7 +62,7 @@ def notaccess(request):
 @ckct
 def random(request):
     anime = Anime.objects.order_by('?').first()
-    return redirect('/anime/'+str(anime.id)+'/'+anime.title)
+    return redirect('/anime/'+str(anime.id)+'/'+anime.slug)
 
 def getServerLink(request):
     if request.method == 'POST':
