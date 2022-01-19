@@ -13,14 +13,16 @@ from io import BytesIO
 
 import datetime
 import ipinfo
+import requests
+
 
 
 def ckct(old_function):
     def new_function(request):
+        country = request.META.get('HTTP_CF_IPCOUNTRY') 
 
-        ct = request.ipinfo.country
-        print(ct)
-        if ct not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
+        print(country)
+        if country not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
             return redirect('notaccess')
         else:
             return old_function(request)
