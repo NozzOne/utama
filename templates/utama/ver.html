@@ -5,7 +5,7 @@
 <title>{{episode.title}} Episodio {{episode.episode}} Sub Español - Utama</title>
 <section class="section">
     <div class="container">
-        <div class="columns is-centered">
+        <div class="columns is-multiline is-centered">
             <div class="column is-8">
                 <div class="name-container block" style="display: inline-flex;width: 100%;flex-wrap: nowrap;justify-content: space-between; align-items: center;">
                     <div class="name-container-names" style="display: flex; flex-direction: column;">
@@ -76,21 +76,28 @@
                             </a>
                             {% endif %}
                         </div>
-
                     </div>
                 </div>
             </div>
+            <div class="column is-8">
+                <div id="disqus_thread"></div>
 
+
+            </div>
           </div>
     </div>
 </section>
 
 
-
 <script>
 var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.arrayIteratorImpl=function(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}};$jscomp.arrayIterator=function(a){return{next:$jscomp.arrayIteratorImpl(a)}};$jscomp.makeIterator=function(a){var b="undefined"!=typeof Symbol&&Symbol.iterator&&a[Symbol.iterator];return b?b.call(a):$jscomp.arrayIterator(a)};$jscomp.arrayFromIterator=function(a){for(var b,c=[];!(b=a.next()).done;)c.push(b.value);return c};
-$jscomp.arrayFromIterable=function(a){return a instanceof Array?a:$jscomp.arrayFromIterator($jscomp.makeIterator(a))};function getServerlink(a,b){$.ajax({url:decodeURI('{% url "getServerlink" %}'),headers:{"X-CSRFToken":"{{ csrf_token }}"},type:"POST",data:{id:a,server:b}}).done(function(c){console.log(c);$("#framez").attr("src",c)}).fail(function(c){console.log(c)})}
+$jscomp.arrayFromIterable=function(a){return a instanceof Array?a:$jscomp.arrayFromIterator($jscomp.makeIterator(a))};function getServerlink(a,b){$.ajax({url:decodeURI('{% url "getServerlink" %}'),headers:{"X-CSRFToken":"{{ csrf_token }}"},type:"POST",data:{id:a,server:b}}).done(function(c){$("#framez").attr("src",c)}).fail(function(c){})}
 var tabsWithContent=function(){var a=document.querySelectorAll(".tabs li"),b=document.querySelectorAll(".tab-content"),c=function(){a.forEach(function(d){d.classList.remove("is-active")})},f=function(d){return[].concat($jscomp.arrayFromIterable(d.parentElement.children)).indexOf(d)};a.forEach(function(d){d.addEventListener("click",function(){c();document.querySelectorAll(".iframe").forEach(function(e){e.src=e.src});d.classList.add("is-active");b[f(d)].classList.add("is-active")})});a[0].click()}();
 </script>
-    
+<script>
+var disqus_config=function(){this.page.url="https://utama.live/ver/{{episode.id}}/{{episode.anime.slug}}",this.page.identifier="{{url}}"};!function(){var e=document,t=e.createElement("script");t.src="https://test-cznbonimn3.disqus.com/embed.js",t.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(t)}();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//test-cznbonimn3.disqus.com/count.js" async></script>
+
 {% endblock %}

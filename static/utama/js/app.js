@@ -11,7 +11,6 @@ function getData(search)
     {
       let html = '';
       for (const row of data.persons){
-        console.log(row);
         var url = "{% url 'anime' id=12345 nombre=54321 %}".replace(/12345/, row.slug).replace(/54321/, row.title);
         html += `
               <a href=${url} class="is-flex">
