@@ -20,12 +20,12 @@ import requests
 
 def ckct(old_function):
     def new_function(request, id=None, nombre=None):
-        # country = request.META.get('HTTP_CF_IPCOUNTRY') 
+        country = request.META.get('HTTP_CF_IPCOUNTRY') 
 
-        # print(country)
-        # if country not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
-        #     return redirect('notaccess')
-        # else:
+        print(country)
+        if country not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
+            return redirect('notaccess')
+        else:
             if id and nombre:
                 return old_function(request, id, nombre)
             else:
