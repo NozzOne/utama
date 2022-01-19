@@ -23,8 +23,14 @@
     <link rel='shortcut icon' type='image/x-icon' href='{% static "favicon.ico" %}' />
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
-    <!-- title block -->
     <title>{% block title %}{% endblock %}</title>
+    <meta content="{% block title %}{% endblock %}" property="og:title" />
+    <meta content="{% block description %}{% endblock %}" property="og:description" />
+    <meta content="{% block url %}{% endblock %}" property="og:url" />
+    <meta content="{% block image %}{% endblock %}" property="og:image" />
+    <meta content="#da0037" data-react-helmet="true" name="theme-color" />
+
+
 </head>
 
 <header>
@@ -34,7 +40,6 @@
         <a class="navbar-item ui-box bottom-stay is-gap-2">
           <span class="is-size-3 ui-border-element" style="font-style:italic; font-weight:900; text-transform: uppercase; font-family: Montserrat; color: var(--main-text-color-hover);">Utama</span>
         </a>
-        <!-- cargando text -->
         <p style="text-align: center; font-weight:600; font-family: Montserrat; color: var(--main-text-color);">Cargando...</p>
 
       </div>

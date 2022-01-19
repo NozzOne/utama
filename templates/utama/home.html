@@ -1,6 +1,11 @@
 {% extends 'utama/layout.html' %}
 
-{% block title %} Utama - Tus animes Favoritos Sin tantos anuncios{% endblock %}
+{% block title %}Utama{% endblock %}
+{% block description %}Tus animes Favoritos Sin tantos anuncios{% endblock %}
+{% block url %}https://utama.live{% endblock %}
+{% block image %}https://utama.live/static/favicon.ico{% endblock %}
+
+{% block content %}
 {% block content %}
 {% include 'utama/partials/_slider.html' with populares=MostPopular %}
 
