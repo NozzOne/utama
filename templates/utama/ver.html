@@ -96,7 +96,7 @@ var tabsWithContent=function(){var a=document.querySelectorAll(".tabs li"),b=doc
 </script>
 <script>
     var disqus_config = function () {
-        this.page.url = '{% url "ver" id=episode.anime.slug nombre=episode.anime.slug %}';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.url = '{% url "ver" id=episode.id nombre=episode.anime.slug %}';  // Replace PAGE_URL with your page's canonical URL variable
         this.page.identifier = '{{ episode.id }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE
