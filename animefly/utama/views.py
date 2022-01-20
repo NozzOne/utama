@@ -19,15 +19,13 @@ import datetime
 
 def ckct(old_function):
     def new_function(request, id=None, nombre=None):
-        country = request.META.get('HTTP_CF_IPCOUNTRY') 
-
-        print(country)
-        if country not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
-            return redirect('notaccess')
-        else:
-            if id and nombre:
-                return old_function(request, id, nombre)
-            else:
+        # country = request.META.get('HTTP_CF_IPCOUNTRY') 
+        # if country not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
+        #     return redirect('notaccess')
+        # else:
+        #     if id and nombre:
+        #         return old_function(request, id, nombre)
+        #     else:
                 return old_function(request)
 
     return new_function
@@ -142,9 +140,8 @@ def broadcast(request):
         episodes = Episode.objects.filter(anime_id=i.id).count()
         i.release = i.release + datetime.timedelta(weeks=episodes)
 
-    animes.order_by('-release')
 
-    return render(request, 'utama/broadcast.html', {'animes': animes})
+    return render(request, 'utama/broadcast.html', {'animes': animes.order_by('-release')})
 
 def render_image(request, size,filename):
     small = (200,200)
