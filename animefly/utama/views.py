@@ -140,8 +140,7 @@ def broadcast(request):
         episodes = Episode.objects.filter(anime_id=i.id).count()
         i.release = i.release + datetime.timedelta(weeks=episodes)
 
-
-    return render(request, 'utama/broadcast.html', {'animes': animes.order_by('-release')})
+    return render(request, 'utama/broadcast.html', {'animes': animes})
 
 def render_image(request, size,filename):
     small = (200,200)
