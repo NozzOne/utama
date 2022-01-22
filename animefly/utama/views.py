@@ -49,7 +49,7 @@ def anime(request, id, nombre=None):
 @ckct
 def ver(request, id, nombre=None):
     episode = Episode.objects.get(id=id)
-    anime_episode = AnimeEpisode.objects.filter(episode_id=id)
+    anime_episode = AnimeEpisode.objects.filter(episode_id=id).order_by('server')
     prev = Episode.objects.filter(anime__id=episode.anime_id).filter(id__lt=episode.id).order_by('-id')[0:1]
     sig = Episode.objects.filter(anime__id=episode.anime_id).filter(id__gt=episode.id).order_by('id')[0:1]
 
