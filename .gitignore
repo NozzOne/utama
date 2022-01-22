@@ -4,3 +4,4 @@ env/
 db.sqlite3
 *.webp
 *.sqlite3
+db.sqlite3
