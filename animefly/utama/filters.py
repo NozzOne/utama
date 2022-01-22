@@ -1,9 +1,9 @@
-from telnetlib import STATUS
 import django_filters
-from django.forms.widgets import TextInput, Select
+from django.forms.widgets import Select
 
-from .models import Anime, Genres, AnimeGenres
-from django_filters import DateFilter
+from .models import Anime, Genres
+
+
 
 class AnimeFilter(django_filters.FilterSet):
 

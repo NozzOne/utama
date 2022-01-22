@@ -1,0 +1,10 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'lib/plyr/plyr.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.6.12/plyr.min.js" integrity="sha512-KD7SjO7VUcKW975+6TGB/h/E//W8Pei+W9806myhzEwekQ9W82Ne5jUMa2JMVn+pqSICZDVnvckAhTUwfON+pA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<video id="player" width="100%" height="100%" poster="{% url 'episode' size='large' filename=poster  %}" playsinline controls autoplay  >
+    <source src="{{link}}" type="video/mp4">
+</video>
+<script>
+    const player = new Plyr('#player');
+</script>

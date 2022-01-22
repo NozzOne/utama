@@ -1,18 +1,19 @@
-from os import stat
-from platform import release
-import re
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.http import FileResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.urls import reverse
+from django.views.decorators.clickjacking import xframe_options_exempt
+from django.template import Template, Context
+from django.template.loader import get_template
 
 from .models import Anime, AnimeGenres,  Episode, AnimeEpisode
 from .filters import AnimeFilter
+from .getter import *
 
 from PIL import Image
 from io import BytesIO
-
 import datetime
 
 
@@ -48,7 +49,7 @@ def anime(request, id, nombre=None):
 @ckct
 def ver(request, id, nombre=None):
     episode = Episode.objects.get(id=id)
-    anime_episode = AnimeEpisode.objects.filter(episode_id=id).order_by('server')
+    anime_episode = AnimeEpisode.objects.filter(episode_id=id)
     prev = Episode.objects.filter(anime__id=episode.anime_id).filter(id__lt=episode.id).order_by('-id')[0:1]
     sig = Episode.objects.filter(anime__id=episode.anime_id).filter(id__gt=episode.id).order_by('id')[0:1]
 
@@ -66,7 +67,31 @@ def getServerLink(request):
         id = request.POST['id']
         server = request.POST['server']
         anime_episode = AnimeEpisode.objects.filter(episode__id=id)
-        return HttpResponse(anime_episode.get(server=server).link)
+        link = anime_episode.get(server=server).link
+        if "fembed" in link or "solidfiles" in link or "mixdrop" in link:
+            return HttpResponse('http://127.0.0.1:8000/iframe/'+id+"/"+server)
+        return HttpResponse(link)
+
+@xframe_options_exempt
+def getiframe(request,id, server):
+    anime = AnimeEpisode.objects.filter(episode__id=id)
+    link = anime.get(server=server).link
+    thumbnail = anime.get(server=server).episode.ThumbnailFilename
+    
+    if "fembed" in link:
+        link = Fembed(url=link).fetch()
+    
+    elif "solidfiles" in link:
+        link = SolidFiles(url=link).fetch()
+    elif "mixdrop" in link:
+        link = MixDrop(url=link).fetch()
+
+    view = get_template('utama/iframe.html')
+    context = {
+        'link': link,
+        'poster': thumbnail,
+    }
+    return HttpResponse(view.render(context, request))
 
 
 def getdata(request):
@@ -87,7 +112,6 @@ def getdata(request):
         )
 
     return JsonResponse({'persons':animelist});
-
 
 
 def getfilter(request):
@@ -141,6 +165,8 @@ def broadcast(request):
         i.release = i.release + datetime.timedelta(weeks=episodes)
 
     return render(request, 'utama/broadcast.html', {'animes': animes})
+
+
 
 def render_image(request, size,filename):
     small = (200,200)

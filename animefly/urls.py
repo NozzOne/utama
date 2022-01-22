@@ -42,6 +42,7 @@ urlpatterns = [
 
     # datas
     path('search', views.getdata, name="search"),
+    path('iframe/<int:id>/<str:server>', views.getiframe, name="iframe"),
 
     # media
     path('media/render/<str:size>/<str:filename>', views.render_image, name='render'),
