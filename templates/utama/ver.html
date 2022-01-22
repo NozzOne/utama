@@ -32,7 +32,7 @@
                       </ul>
                     </div>
                     <div>
-                        {% if "solidfiles" in servers.0.link or "archive" in servers.0.link  %}
+                        {% if "archive" in servers.0.link  %}
                             <section  class="tab-content block videoWrapper" style="padding: 0; position: relative; padding-bottom: 56.25%;  padding-top: 25px; height: 0;">
                                 <iframe id="framez"  class="iframeWrapper iframe" width="640"  src="{% url 'iframe' id=episode.id server=servers.0.server %}" allowfullscreen webkitallowfullscreen scrolling="no" frameborder="0"></iframe>
                             </section>

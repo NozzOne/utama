@@ -68,7 +68,7 @@ def getServerLink(request):
         server = request.POST['server']
         anime_episode = AnimeEpisode.objects.filter(episode__id=id)
         link = anime_episode.get(server=server).link
-        if "solidfiles" in link or "archive" in link:
+        if "archive" in link:
             return HttpResponse('https://utama.live/iframe/'+id+"/"+server)
         return HttpResponse(link)
 
