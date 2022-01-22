@@ -21,13 +21,13 @@ import datetime
 def ckct(old_function):
     def new_function(request, id=None, nombre=None):
         country = request.META.get('HTTP_CF_IPCOUNTRY') 
-        if country not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
-            return redirect('notaccess')
+        # if country not in ["AR","BO","CL","CO","CR","DO","EC","GT","HN","MX","NI","PA","PE","PR","PY","SV","UY","VE","ES"]:
+        #     return redirect('notaccess')
+        # else:
+        if id and nombre:
+            return old_function(request, id, nombre)
         else:
-            if id and nombre:
-                return old_function(request, id, nombre)
-            else:
-                return old_function(request)
+            return old_function(request)
 
     return new_function
 
@@ -68,8 +68,8 @@ def getServerLink(request):
         server = request.POST['server']
         anime_episode = AnimeEpisode.objects.filter(episode__id=id)
         link = anime_episode.get(server=server).link
-        if "fembed" in link or "solidfiles" in link or "mixdrop" in link:
-            return HttpResponse('http://127.0.0.1:8000/iframe/'+id+"/"+server)
+        if "fembed" in link or "solidfiles" in link or "mixdrop" in link or "archive" in link:
+            return HttpResponse('https://utama.live/iframe/'+id+"/"+server)
         return HttpResponse(link)
 
 @xframe_options_exempt
